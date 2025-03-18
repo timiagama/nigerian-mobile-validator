@@ -2,11 +2,13 @@ name: SonarQube Analysis
 
 on:
   push:
-    branches:
+    branches-ignore:
       - main
       - master
-      - develop
   pull_request:
+    branches: 
+      - main
+      - master
     types: [opened, synchronize, reopened]
   schedule:
     - cron: '0 0 * * 0'  # Weekly scan on Sundays

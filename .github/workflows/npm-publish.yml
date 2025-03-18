@@ -2,6 +2,14 @@
 name: Publish to NPM
 
 on:
+  push:
+    branches-ignore:
+      - main
+      - master
+  pull_request:
+    branches: 
+      - main
+      - master
   release:
     types: [created]
 

@@ -2,9 +2,13 @@ name: Snyk Security Checks
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches-ignore:
+      - main
+      - master
   pull_request:
-    branches: [ main, master, develop ]
+    branches: 
+      - main
+      - master
   schedule:
     - cron: '0 0 * * 0'  # Weekly scan on Sundays
 
@@ -27,7 +31,7 @@ jobs:
       run: npm ci
     
     - name: Run ESLint security checks
-      run: npm run security:eslint
+      run: npm run eslint
     
     - name: Run tests with coverage
       run: npm run test
