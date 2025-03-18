@@ -35,7 +35,6 @@
         "prepublishOnly": "npm run build && npm test",
         "lint": "eslint src --ext .ts",
         "format": "prettier --write \"src/**/*.ts\"",
-        "postinstall": "snyk monitor --all-projects",
         "snyk": "snyk test --all-projects",
         "snyk:monitor": "snyk monitor --all-projects",
         "snyk:wizard": "snyk wizard",
