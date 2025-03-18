@@ -31,7 +31,7 @@ jobs:
       run: npm ci
     
     - name: Run ESLint security checks
-      run: npm run eslint
+      run: npm run lint
     
     - name: Run tests with coverage
       run: npm run test
