@@ -1,18 +1,26 @@
 # Nigerian Mobile Number Validator
 
-A rigorous TypeScript library for validating Nigerian mobile numbers with strict compliance to the official Nigerian Communications Commission (NCC) numbering plan. Built with advanced, enterprise-grade features yet simple enough for general use. This library combines strict NCC numbering plan compliance with advanced features for deployment in critical production environments.
+A rigorous library for validating Nigerian mobile numbers with strict compliance to the official Nigerian Communications Commission (NCC) numbering plan. Built in TypeScript with advanced, enterprise-grade features yet simple enough for general use. This library combines strict NCC numbering plan compliance with robust security features for deployment in critical production environments.
+
+![npm version](https://img.shields.io/npm/v/nigerian-mobile-validator.svg)
+![license](https://img.shields.io/npm/l/nigerian-mobile-validator.svg)
+![build status](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/npm-publish.yml)
+![SonarQube](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/sonar.yml?label=code%20quality)
+![Snyk Security](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/snyk.yml?label=security)
+![CodeQL Analysis](https://github.com/timiagama/nigerian-mobile-validator/workflows/CodeQL/badge.svg)
+![Dependabot](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=dependabot)
 
 ## Enterprise Features
 
 - **Complete NCC Compliance**: Validates against the official Nigerian Communications Commission numbering plan (updated March 2025)
-- **Comprehensive Logging**: Integration with Winston, Pino, and other logging frameworks
-- **Reference Testing**: Built-in system for validating code changes against standard test sets
-- **Rate Limiting**: Configurable throttling for high-traffic applications
-- **Framework Integration**: Components for React, Vue, and Angular applications
+- **Enterprise Security**: Advanced input sanitization, rate limiting, and protection against common security vulnerabilities
+- **Comprehensive Logging**: Integration with Winston, Pino, and other logging frameworks with automatic PII masking
+- **Batch Processing**: Efficiently validate multiple numbers through array or file input
 - **Reactive Architecture**: Stream-based notifications for real-time validation in modern UIs
 - **SSR Compatibility**: Works seamlessly in server-side rendering environments
 - **Dual Module Support**: ESM and CommonJS support for maximum compatibility
 - **Performance Optimized**: Map-based lookups and lazy loading for minimal resource usage
+- **CI/CD Integration**: Built-in security scanning with CodeQL, Snyk, SonarQube, and Dependabot
 
 ## Who Is This For?
 
@@ -21,6 +29,7 @@ A rigorous TypeScript library for validating Nigerian mobile numbers with strict
 - **Identity Verification Systems**: For strong customer authentication
 - **Government Agencies**: For citizen-facing applications requiring phone verification
 - **Enterprise Applications**: For customer data validation and verification
+- **The Rest Of Us**: For anyone else that values a robust Nigerian mobile number validator
 
 ## Installation
 
@@ -70,6 +79,44 @@ if (result.validationSucceeded) {
 }
 ```
 
+## Enhanced Security Features
+
+The library includes robust security features to protect against common vulnerabilities:
+
+```typescript
+import { 
+  NigerianMobileNumberValidator, 
+  ValidatorSecurity 
+} from 'nigerian-mobile-validator';
+
+// Create a validator with rate limiting (max 100 validations per minute)
+const validator = new NigerianMobileNumberValidator({
+  rateLimit: 100
+});
+
+// Validate with automatic input sanitization
+// The library sanitizes against XSS, SQL injection, and other attacks
+const result = validator.validate(userProvidedInput);
+
+// For manual input sanitization, you can also use:
+const sanitizedInput = ValidatorSecurity.stripUnsafeInputs(userProvidedInput);
+
+// Advanced security features are automatically applied:
+// - Input sanitization (control characters, excessive length)
+// - Rolling window rate limiting
+// - Fast rejection of obvious invalid inputs
+// - Automatic PII masking in logs
+// - Protection against ReDoS (Regular Expression Denial of Service)
+// - Prevention of excessive resource usage
+```
+
+The library undergoes regular security scans using industry-standard tools:
+
+- **CodeQL Analysis**: Static code analysis to find security vulnerabilities
+- **Snyk Security**: Dependency and code scanning for known vulnerabilities
+- **SonarQube**: Code quality and security analysis
+- **Dependabot**: Automated dependency updates to patch security issues
+
 ## Reactive Validation
 
 For modern applications, the library provides event-based validation that integrates seamlessly with reactive architectures:
@@ -79,7 +126,7 @@ import { NigerianMobileNumberValidator } from 'nigerian-mobile-validator';
 
 const validator = new NigerianMobileNumberValidator();
 
-// Set up a listener for validation events
+// Set up a listener for validation results
 const unsubscribe = validator.onValidationResult(result => {
   if (result.validationSucceeded) {
     showSuccessUI(result.mobileNumber?.telco);
@@ -101,23 +148,26 @@ validator.dispose();
 
 ## Enterprise Logging Support
 
-Integrate with your existing logging infrastructure for comprehensive monitoring:
+Integrate with your existing logging infrastructure with automatic PII protection:
 
 ```typescript
 import { 
   NigerianMobileNumberValidator, 
-  ConsoleLogger, 
-  WinstonAdapter, 
-  PinoAdapter,
   LoggerFactory,
   setDefaultLogger 
 } from 'nigerian-mobile-validator';
 import winston from 'winston';
 import pino from 'pino';
 
+// The validator automatically wraps all loggers with security protection
+// that masks phone numbers and other sensitive information
+
 // Use a custom console logger with prefix
 const validator = new NigerianMobileNumberValidator({
-  logger: new ConsoleLogger('MyApp')
+  logger: LoggerFactory.createLogger({
+    type: 'console',
+    prefix: 'MyApp'
+  })
 });
 
 // Winston integration
@@ -128,97 +178,31 @@ const winstonLogger = winston.createLogger({
 });
 
 const validator2 = new NigerianMobileNumberValidator({
-  logger: new WinstonAdapter(winstonLogger)
+  logger: LoggerFactory.createLogger({
+    type: 'winston',
+    instance: winstonLogger
+  })
 });
 
 // Pino integration
 const pinoLogger = pino();
 
 const validator3 = new NigerianMobileNumberValidator({
-  logger: new PinoAdapter(pinoLogger)
+  logger: LoggerFactory.createLogger({
+    type: 'pino',
+    instance: pinoLogger
+  })
 });
 
 // Set a global default logger for the entire library
-setDefaultLogger(new ConsoleLogger('GlobalValidator'));
-```
+setDefaultLogger(LoggerFactory.createLogger({
+  type: 'console',
+  prefix: 'GlobalValidator'
+}));
 
-## Reference Set Testing
-
-For enterprise development teams, the library provides reference set testing for validating code changes against known test cases:
-
-```typescript
-import { testReferenceSet, runReferenceTests } from 'nigerian-mobile-validator';
-
-// Run tests from a JSON file
-const results = await testReferenceSet('./reference-tests.json');
-
-// Print a human-readable report
-console.log(results.generateReport());
-
-// Export results to CSV for further analysis
-await results.exportToCsv('./test-results.csv');
-```
-
-Reference tests are defined in a structured JSON format:
-
-```json
-{
-  "name": "Nigerian Mobile Number Tests",
-  "version": "1.0.0",
-  "testSets": [
-    {
-      "name": "Valid Numbers",
-      "description": "Known valid numbers",
-      "cases": [
-        {
-          "number": "08031234567",
-          "expectedValid": true,
-          "expectedTelco": "MTN",
-          "description": "Valid MTN number",
-          "tags": ["mtn", "valid"]
-        }
-      ]
-    }
-  ]
-}
-```
-
-Advanced testing options allow for targeted testing:
-
-```typescript
-// Run only specific test sets
-const results = await testReferenceSet('./reference-tests.json', {
-  testSets: ['Valid Numbers', 'Edge Cases']
-});
-
-// Filter by tags
-const mtnResults = await testReferenceSet('./reference-tests.json', {
-  tags: ['mtn']
-});
-
-// CI/CD integration
-if (results.failed > 0) {
-  process.exit(1); // Exit with error code for CI pipeline
-}
-```
-
-## Rate Limiting
-
-For applications with high traffic or security requirements:
-
-```typescript
-import { NigerianMobileNumberValidator, MobileValidationStatus } from 'nigerian-mobile-validator';
-
-// Create a validator with rate limiting (max 100 validations per minute)
-const validator = new NigerianMobileNumberValidator({
-  rateLimit: 100
-});
-
-// When rate limit is exceeded, validation returns status RateLimitExceeded
-const result = validator.validate('08031234567');
-if (result.validationStatus === MobileValidationStatus.RateLimitExceeded) {
-  console.log('Too many validation attempts, please try again later');
-}
+// All logs automatically mask sensitive information:
+// Before: "Validating number: 08031234567"
+// After:  "Validating number: 080*****67"
 ```
 
 ## Batch Processing
@@ -245,207 +229,6 @@ console.log(`Valid: ${fileResults.validCount}, Invalid: ${fileResults.invalidCou
 // Export results to CSV
 await fileResults.exportToCsv('validation-results.csv');
 ```
-
-## Framework Integration Examples
-
-The library is designed to work with popular frontend frameworks. Complete example implementations can be found in our [GitHub repository](https://github.com/timiagama/nigerian-mobile-validator/tree/main/examples).
-
-### React Component Example
-
-```tsx
-import React, { useState, useEffect } from 'react';
-import { NigerianMobileNumberValidator, MobileNumberValidationResult } from 'nigerian-mobile-validator';
-
-interface PhoneInputProps {
-  onChange?: (value: string, isValid: boolean) => void;
-  onValidation?: (isValid: boolean, telco?: string) => void;
-  initialValue?: string;
-  label?: string;
-}
-
-const PhoneInput: React.FC<PhoneInputProps> = (props) => {
-  const [number, setNumber] = useState(props.initialValue || '');
-  const [isValid, setIsValid] = useState(false);
-  const [telco, setTelco] = useState('');
-  const [validator] = useState(() => new NigerianMobileNumberValidator());
-  
-  useEffect(() => {
-    const unsubscribe = validator.onValidationResult((result) => {
-      setIsValid(result.validationSucceeded);
-      setTelco(result.validationSucceeded ? result.mobileNumber?.telco || '' : '');
-      
-      if (props.onValidation) {
-        props.onValidation(
-          result.validationSucceeded, 
-          result.validationSucceeded ? result.mobileNumber?.telco : undefined
-        );
-      }
-    });
-    
-    return () => {
-      unsubscribe();
-      validator.dispose();
-    };
-  }, []);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setNumber(value);
-    validator.validate(value);
-    
-    if (props.onChange) {
-      props.onChange(value, isValid);
-    }
-  };
-  
-  return (
-    <div>
-      {props.label && <label>{props.label}</label>}
-      <input 
-        type="tel" 
-        value={number} 
-        onChange={handleChange} 
-        className={isValid ? 'valid' : ''} 
-      />
-      {isValid && <div className="telco-badge">{telco}</div>}
-    </div>
-  );
-};
-
-export default PhoneInput;
-```
-
-### Vue Component Example
-
-```vue
-<template>
-  <div>
-    <label v-if="label">{{ label }}</label>
-    <div class="input-wrapper">
-      <input
-        type="tel"
-        v-model="phoneNumber"
-        :class="{ valid: isValid }"
-      />
-      <div v-if="isValid" class="telco-badge">{{ telco }}</div>
-    </div>
-  </div>
-</template>
-
-<script>
-import { NigerianMobileNumberValidator } from 'nigerian-mobile-validator';
-
-export default {
-  props: {
-    modelValue: String,
-    label: String
-  },
-  
-  data() {
-    return {
-      phoneNumber: this.modelValue || '',
-      isValid: false,
-      telco: '',
-      validator: null
-    }
-  },
-  
-  created() {
-    this.validator = new NigerianMobileNumberValidator();
-    
-    this.unsubscribe = this.validator.onValidationResult(result => {
-      this.isValid = result.validationSucceeded;
-      this.telco = result.validationSucceeded ? result.mobileNumber?.telco || '' : '';
-      this.$emit('validation', { 
-        isValid: this.isValid, 
-        telco: this.isValid ? this.telco : undefined 
-      });
-    });
-  },
-  
-  watch: {
-    phoneNumber(value) {
-      this.$emit('update:modelValue', value);
-      this.validator.validate(value);
-    }
-  },
-  
-  beforeUnmount() {
-    this.unsubscribe?.();
-    this.validator?.dispose();
-  }
-}
-</script>
-```
-
-### Angular Component Example
-
-```typescript
-// phone-input.component.ts
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
-import { NigerianMobileNumberValidator } from 'nigerian-mobile-validator';
-
-@Component({
-  selector: 'app-phone-input',
-  templateUrl: './phone-input.component.html',
-  styleUrls: ['./phone-input.component.css']
-})
-export class PhoneInputComponent implements OnInit, OnDestroy {
-  @Input() phoneNumber = '';
-  @Input() label?: string;
-  @Output() phoneNumberChange = new EventEmitter<string>();
-  @Output() validationChange = new EventEmitter<{isValid: boolean, telco?: string}>();
-  
-  isValid = false;
-  telco = '';
-  private validator = new NigerianMobileNumberValidator();
-  private unsubscribe?: () => void;
-  
-  ngOnInit() {
-    this.unsubscribe = this.validator.onValidationResult(result => {
-      this.isValid = result.validationSucceeded;
-      this.telco = result.validationSucceeded ? result.mobileNumber?.telco || '' : '';
-      this.validationChange.emit({
-        isValid: this.isValid,
-        telco: this.isValid ? this.telco : undefined
-      });
-    });
-    
-    if (this.phoneNumber) {
-      this.validator.validate(this.phoneNumber);
-    }
-  }
-  
-  onInputChange(value: string) {
-    this.phoneNumber = value;
-    this.phoneNumberChange.emit(value);
-    this.validator.validate(value);
-  }
-  
-  ngOnDestroy() {
-    this.unsubscribe?.();
-    this.validator.dispose();
-  }
-}
-```
-
-```html
-<!-- phone-input.component.html -->
-<div class="phone-input">
-  <label *ngIf="label">{{ label }}</label>
-  <div class="input-wrapper">
-    <input
-      type="tel"
-      [ngModel]="phoneNumber"
-      (ngModelChange)="onInputChange($event)"
-      [ngClass]="{ 'valid': isValid }"
-    />
-    <div *ngIf="isValid" class="telco-badge">{{ telco }}</div>
-  </div>
-</div>
-```
-
-See the [GitHub repository](https://github.com/timiagama/nigerian-mobile-validator/tree/main/examples) for more examples, including a complete demo application.
 
 ## Server-Side Rendering (SSR) Compatibility
 
@@ -480,10 +263,6 @@ import { NigerianMobileNumberValidator } from 'nigerian-mobile-validator';
 
 // CommonJS require
 const { NigerianMobileNumberValidator } = require('nigerian-mobile-validator');
-
-// Named submodule imports
-import { PhoneNumberInput } from 'nigerian-mobile-validator/react';
-import { PhoneInput } from 'nigerian-mobile-validator/vue';
 ```
 
 ## TypeScript Support
@@ -528,6 +307,41 @@ The library validates numbers against the official NCC numbering plan with these
 
 4. **Status Verification**: The number must not be in a range marked as unassigned, withdrawn, or reserved.
 
+## Security Measures
+
+The library implements various security measures to protect against common vulnerabilities:
+
+1. **Input Sanitization**: All user inputs are sanitized to prevent:
+   - Control character injection
+   - Excessively long inputs
+   - Format manipulation attacks
+
+2. **Rate Limiting**: Configurable rolling window rate limiting to prevent:
+   - Brute force attacks
+   - Denial of service attempts
+   - Resource exhaustion
+
+3. **PII Protection**: Automatic masking of phone numbers in logs:
+   - Masks middle digits of phone numbers (e.g., 080*****67)
+   - Works with all supported logging frameworks
+   - Identifies and masks phone numbers in log metadata
+
+4. **Fast Rejection**: Early detection and rejection of:
+   - Obviously invalid inputs
+   - Potentially malicious patterns
+   - Inputs exceeding maximum length
+
+5. **Memory Leak Prevention**: Protection against memory issues:
+   - Limited event listener count
+   - Proper resource cleanup
+   - Automatic event emitter management
+
+6. **Security Scanning**: Automated security verification:
+   - CodeQL analysis
+   - Snyk vulnerability scanning
+   - SonarQube code quality checks
+   - Dependabot dependency updates
+
 ## Performance Considerations
 
 - **Memory Usage**: ~200KB initial footprint with lazy loading of network codes
@@ -535,18 +349,31 @@ The library validates numbers against the official NCC numbering plan with these
 - **Batch Performance**: ~20,000 validations per second
 - **Bundle Size**: Tree-shakable and code-split for minimal footprint
 
-## Documentation
+## Development and Contribution
 
-This library includes comprehensive documentation to help you get started and understand its internal workings:
+This project uses:
 
-- **README.md**: This file, containing installation, usage examples, and API reference
-- **GitHub Repository**: Contains all examples, source code, and additional documentation
-- **Project Structure and other Documents**: For contributors and maintainers, available in the [docs folder](https://github.com/timiagama/nigerian-mobile-validator/tree/main/docs).
-- **TypeScript Declarations**: The library ships with complete TypeScript type definitions for enhanced developer experience
-- **Code Examples**: Practical usage examples for React, Vue, Angular, and more are available in the GitHub repository under the `examples` directory
+- **TypeScript**: For type safety and modern JavaScript features
+- **Jest**: For unit and integration testing
+- **ESLint**: For code quality and security scanning
+- **Prettier**: For consistent code formatting
+- **GitHub Actions/Workflows**: For CI/CD automation
 
-For the most up-to-date documentation and examples, please visit the [GitHub repository](https://github.com/timiagama/nigerian-mobile-validator).
+To contribute to this project:
 
+1. Fork the repository
+2. Clone your fork
+3. Install dependencies: `npm install`
+4. Make your changes
+5. Run tests: `npm test`
+6. Submit a pull request
+
+We welcome contributions of all kinds, including:
+
+- Bug fixes
+- Feature enhancements
+- Documentation improvements
+- Test coverage improvements
 
 ## Credits
 

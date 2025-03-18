@@ -15,11 +15,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stream-based API for reactive updates
 - Batch validation for processing multiple numbers
 - CSV export functionality
-- React component integration
-- Angular and Vue component templates
 - TypeScript declarations for better type safety
 - Comprehensive unit and integration tests
 - Documentation with usage examples
+- Enhanced security features through new `ValidatorSecurity` class
+- Rolling window rate limiting to prevent abuse
+- Input sanitization against control characters and overly long inputs
+- Fast rejection mechanism for obviously invalid inputs
+- PII (Personally Identifiable Information) protection in logs
+- Automatic phone number masking in all logging
+- Memory leak prevention with EventEmitter listener limits
+- Improved test data generation with NetworkAccessCode enums
+- Comprehensive property-based testing for validation robustness
+- Integration tests for security features
+- Event emitter for reactive validation and lifecycle management
 
 ### Technical Features
 - Map-based lookup for optimal performance
@@ -28,3 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for multiple number formats
 - Detailed validation status messages
 - Complex number range validations
+- Security protection against denial of service
+- PII masking for all phone numbers in logs
+- Prevention for memory leaks in event handling
+- Input sanitization against malicious patterns
+- Maximum input length restrictions
