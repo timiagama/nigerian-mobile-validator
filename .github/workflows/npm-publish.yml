@@ -1,5 +1,5 @@
 # .github/workflows/npm-publish.yml
-name: Publish to NPM
+name: Build and Publish
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
       
       - name: Install dependencies
@@ -31,6 +31,23 @@ jobs:
       
       - name: Test
         run: npm test
+      
+      - name: Build
+        run: npm run build
+
+  publish:
+    needs: build
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
+      
+      - name: Install dependencies
+        run: npm ci
       
       - name: Build
         run: npm run build
