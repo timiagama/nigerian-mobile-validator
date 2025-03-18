@@ -1,0 +1,10 @@
+// tsconfig.cjs.json (CommonJS build)
+
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "module": "commonjs",
+        "outDir": "./dist/cjs",
+        "declaration": false
+    }
+}

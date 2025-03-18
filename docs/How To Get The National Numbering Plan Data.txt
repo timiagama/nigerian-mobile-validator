@@ -1,0 +1,39 @@
+How To Get The National Numbering Plan Data
+--
+
+Data Source:
+https://www.ncc.gov.ng/operators/national-numbering-plan
+
+The Challenge:
+Although you can click on a link (different page from above) to download the numbering plan, at the time of writing it links to an outdated document.
+
+The current plan is shown on this page as a paged table, so the workaround is to copy and paste, navigate to next page, rinse and repeat.
+
+Data Scraping Steps:
+1. Set entries per page to the max (100)
+2. Copy and paste data from each page into a spreadsheet
+3. IMPORTANT - in the text import dialog make sure you set the Type of all non-natural-number fields to Text
+4. Repeat steps 1-3 for all pages (currently there are 4 pages)
+5. Then filter and sort spreadsheet to get list of unique Network Codes and Telcos
+6. Save the Numbering Plan, the Network Codes and Telcos lists as separate CSV files
+7. However, these CSVs do not tell us the withdrawn, unallocated ranges etc (they only show allocated ranges, we need that data to be robust)
+8. We can get that data from https://www.ncc.gov.ng/operators/mobile-number-allocation-table
+9. This shows us the  SharedVAS, Unassigned, Withdrawn, Returned,, Available, Reserved
+10. Though in our code we also include the catch-all case of "Unknown" in our Telco enum
+9. Okay, so save the page as a pdf (see Mobile Number Allocation Table _ NCC.pdf)
+10. We now have the detailed number allocations (from earlier manual scraping), and the excluded ranges (from pdf we just saved)
+11. This will allow us to exclude many of the Telcos in our filtered spreadsheet list because they only have allocations in for shared VAS (700-range) or toll free (800-range) i.e. not real mobile numbers
+
+Tips:
+- When filtering in spreadsheet, start with "National" Area Code, because at the moment, this represents ONLY mobile access codes, shared VAS (700), and special services (800).
+- A visual summary of mobile allocations (very useful for checking your code) can be found at https://www.ncc.gov.ng/operators/mobile-number-allocation-table
+- The links to the aforementioned outdated docs can be found at https://www.ncc.gov.ng/industry/numbering-type-approval/national-numbering
+
+Data Loading Steps:
+- Get an LLM to amend the code in both the library and test suite using the lastest CSV data.
+- Prompt carefully to ensure the nuances above are not lost, otherwise this is a whole other discussion, but do that and then...
+- Manually check the changes.
+- Run tests (some may need to change as well).
+
+TODO:
+- Need to set up automated monitoring of NCC pages to check for changes.

@@ -1,0 +1,342 @@
+"#"	"Allottee"	"Area"	"AreaCode"	"AccessCode"	"RangeStart"	"RangeEnd"	"TotalLines"
+1	"101 Communications Limited"	"Lagos"	"0201"	"249"	"2012490000"	"2012499999"	10000
+2	"21st Century Technologies Limited"	"Lagos"	"0201"	"224"	"2012240000"	"2012249999"	10000
+3	"21st Century Technologies Limited"	"Lagos"	"0201"	"225"	"2012250000"	"2012259999"	10000
+4	"21st Century Technologies Limited"	"Lagos"	"0201"	"226"	"2012260000"	"2012269999"	10000
+5	"21st Century Technologies Limited"	"Lagos"	"0201"	"235"	"2012350000"	"2012359999"	10000
+6	"21st Century Technologies Limited"	"Lagos"	"0201"	"236"	"2012360000"	"2012369999"	10000
+7	"21st Century Technologies Limited"	"Lagos"	"0201"	"270"	"2012700000"	"2012709999"	10000
+8	"21st Century Technologies Limited"	"Lagos"	"0201"	"271"	"2012710000"	"2012719999"	10000
+9	"21st Century Technologies Limited"	"Lagos"	"0201"	"277"	"2012770000"	"2012779999"	10000
+10	"21st Century Technologies Limited"	"Lagos"	"0201"	"278"	"2012780000"	"2012789999"	10000
+11	"21st Century Technologies Limited"	"Lagos"	"0201"	"279"	"2012790000"	"2012799999"	10000
+12	"21st Century Technologies Limited"	"Lagos"	"0201"	"280"	"2012800000"	"2012809999"	10000
+13	"21st Century Technologies Limited"	"Lagos"	"0201"	"422"	"2014220000"	"2014229999"	10000
+14	"21st Century Technologies Limited"	"Lagos"	"0201"	"423"	"2014230000"	"2014239999"	10000
+15	"21st Century Technologies Limited"	"Lagos"	"0201"	"448"	"2014480000"	"2014489999"	10000
+16	"21st Century Technologies Limited"	"Abuja"	"0209"	"277"	"2092770000"	"2092779999"	10000
+17	"21st Century Technologies Limited"	"Abuja"	"0209"	"278"	"2092780000"	"2092780999"	1000
+18	"21st Century Technologies Limited"	"Abeokuta"	"02039"	"27"	"2039270000"	"2039270499"	500
+19	"21st Century Technologies Limited"	"Warri"	"02053"	"27"	"2053270000"	"2053270999"	1000
+20	"21st Century Technologies Limited"	"Kaduna"	"02062"	"27"	"2062270000"	"2062270999"	1000
+21	"21st Century Technologies Limited"	"Kano"	"02064"	"27"	"2064270000"	"2064270999"	1000
+22	"21st Century Technologies Limited"	"Port Harcourt"	"02084"	"27"	"2084270000"	"2084270999"	1000
+23	"21st Century Technologies Limited"	"Port Harcourt"	"02084"	"28"	"2084280000"	"2084289999"	10000
+24	"Airtel Networks Limited"	"National"	"0701"	"701"	"7010000000"	"7019999999"	10000000
+25	"Airtel Networks Limited"	"National"	"0708"	"708"	"7080000000"	"7089999999"	10000000
+26	"Airtel Networks Limited"	"National"	"0802"	"802"	"8020000000"	"8029999999"	10000000
+27	"Airtel Networks Limited"	"National"	"0808"	"808"	"8080000000"	"8089999999"	10000000
+28	"Airtel Networks Limited"	"National"	"0812"	"812"	"8120000000"	"8129999999"	10000000
+29	"Airtel Networks Limited"	"National"	"0901"	"901"	"9010000000"	"9019999999"	10000000
+30	"Airtel Networks Limited"	"National"	"0902"	"902"	"9020000000"	"9029999999"	10000000
+31	"Airtel Networks Limited"	"National"	"0904"	"904"	"9040000000"	"9049999999"	10000000
+32	"Airtel Networks Limited"	"National"	"0907"	"907"	"9070000000"	"9079999999"	10000000
+33	"Airtel Networks Limited"	"National"	"0911"	"911"	"9110000000"	"9119999999"	10000000
+34	"Airtel Networks Limited"	"National"	"0912"	"912"	"9120000000"	"9129999999"	10000000
+35	"Airworld Technologies Limited"	"Abuja"	"0209"	"450"	"2094500000"	"2094509999"	10000
+36	"Alpha Technologies Ltd"	"National"	"0700 shared"	"700"	"7000000000"	"7000649999"	650000
+37	"Alpha Technologies Ltd"	"National"	"0800 shared"	"800"	"8000000000"	"8000099999"	100000
+38	"Alpha Technologies Ltd"	"National"	"0700 shared"	"700"	"7002250000"	"7002274999"	25000
+39	"Alpha Technologies Ltd"	"National"	"0700 shared"	"700"	"7007000000"	"7007024999"	25000
+40	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"520"	"2015200000"	"2015209999"	10000
+41	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"521"	"2015210000"	"2015219999"	10000
+42	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"522"	"2015220000"	"2015229999"	10000
+43	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"523"	"2015230000"	"2015239999"	10000
+44	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"524"	"2015240000"	"2015249999"	10000
+45	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"525"	"2015250000"	"2015259999"	10000
+46	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"526"	"2015260000"	"2015269999"	10000
+47	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"527"	"2015270000"	"2015279999"	10000
+48	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"528"	"2015280000"	"2015289999"	10000
+49	"Big Picture Nigeria Limited"	"Lagos"	"0201"	"529"	"2015290000"	"2015299999"	10000
+50	"BillyRonks Global Limited"	"Lagos"	"0201"	"370"	"2013700000"	"2013709999"	10000
+51	"BillyRonks Global Limited"	"Lagos"	"0201"	"371"	"2013710000"	"2013719999"	10000
+52	"BillyRonks Global Limited"	"Lagos"	"0201"	"372"	"2013720000"	"2013729999"	10000
+53	"BillyRonks Global Limited"	"Lagos"	"0201"	"373"	"2013730000"	"2013739999"	10000
+54	"BillyRonks Global Limited"	"Lagos"	"0201"	"374"	"2013740000"	"2013749999"	10000
+55	"BillyRonks Global Limited"	"Abuja"	"0209"	"370"	"2093700000"	"2093709999"	10000
+56	"BillyRonks Global Limited"	"Abuja"	"0209"	"371"	"2093710000"	"2093719999"	10000
+57	"BillyRonks Global Limited"	"Abuja"	"0209"	"372"	"2093720000"	"2093729999"	10000
+58	"BillyRonks Global Limited"	"National"	"0700 shared"	"700"	"7001330000"	"7001339999"	10000
+59	"BillyRonks Global Limited"	"National"	"0800 shared"	"800"	"8001330000"	"8001339999"	10000
+60	"Brass-Wave Global Limited"	"Port Harcourt"	"02084"	"63"	"2084630000"	"2084639999"	10000
+61	"Bricklinks Africa Plc"	"Abuja"	"0209"	"320"	"2093200000"	"2093209999"	10000
+62	"Bricklinks Africa Plc"	"Lagos"	"0201"	"320"	"2013200000"	"2013209999"	10000
+63	"Broadbased Communications Ltd"	"Lagos"	"0201"	"227"	"2012270000"	"2012279999"	10000
+64	"Broadbased Communications Ltd"	"Lagos"	"0201"	"228"	"2012280000"	"2012289999"	10000
+65	"BrowsePoint Telecom Nigeria Limited"	"Kano"	"02064"	"59"	"2064590000"	"2064599999"	10000
+66	"BrowsePoint Telecom Nigeria Limited"	"Kano"	"02064"	"60"	"2064600000"	"2064609999"	10000
+67	"BrowsePoint Telecom Nigeria Limited"	"Kano"	"02064"	"61"	"2064610000"	"2064619999"	10000
+68	"BrowsePoint Telecom Nigeria Limited"	"Kano"	"02064"	"62"	"2064620000"	"2064629999"	10000
+69	"CallMe Nigeria Limited"	"National"	"0700 shared"	"700"	"7008100000"	"7008199999"	100000
+70	"CallMe Nigeria Limited"	"National"	"0800 shared"	"800"	"8008100000"	"8008199999"	100000
+71	"Cedarview Communications Limited"	"National"	"0700 shared"	"700"	"7001235000"	"7001239999"	5000
+72	"Cedarview Communications Limited"	"National"	"0700 shared"	"700"	"7000610000"	"7000619999"	10000
+73	"Cedarview Communications Limited"	"National"	"0800 shared"	"800"	"8001235000"	"8001235999"	1000
+74	"Cedarview Communications Limited"	"National"	"0800 shared"	"800"	"8000610000"	"8000619999"	10000
+75	"Cyberspace Limited"	"Lagos"	"0201"	"515"	"2015150000"	"2015154999"	5000
+76	"Cyberspace Limited"	"Lagos"	"0201"	"515"	"2015155000"	"2015159999"	5000
+77	"Cyberspace Limited"	"Lagos"	"0201"	"516"	"2015160000"	"2015169999"	10000
+78	"Cyberspace Limited"	"Abuja"	"0209"	"515"	"2095150000"	"2095154999"	5000
+79	"EMTS Limited (9Mobile)"	"National"	"0809"	"809"	"8090000000"	"8099999999"	10000000
+80	"EMTS Limited (9Mobile)"	"National"	"0817"	"817"	"8170000000"	"8179999999"	10000000
+81	"EMTS Limited (9Mobile)"	"National"	"0818"	"818"	"8180000000"	"8189999999"	10000000
+82	"EMTS Limited (9Mobile)"	"National"	"0908"	"908"	"9080000000"	"9089999999"	10000000
+83	"EMTS Limited (9Mobile)"	"National"	"0909"	"909"	"9090000000"	"9099999999"	10000000
+84	"EON Global Telecom Limited"	"Abuja"	"0209"	"380"	"2093800000"	"2093809999"	10000
+85	"EON Global Telecom Limited"	"Abuja"	"0209"	"381"	"2093810000"	"2093819999"	10000
+86	"EON Global Telecom Limited"	"Abuja"	"0209"	"382"	"2093820000"	"2093829999"	10000
+87	"EON Global Telecom Limited"	"Abuja"	"0209"	"383"	"2093830000"	"2093839999"	10000
+88	"EON Global Telecom Limited"	"Abuja"	"0209"	"384"	"2093840000"	"2093849999"	10000
+89	"FNL Engineering Limited"	"Uyo"	"02085"	"90"	"2085900000"	"2085902999"	3000
+90	"Friends Wireless Limited"	"Abuja"	"0209"	"205"	"2092050000"	"2092059999"	10000
+91	"Friends Wireless Limited"	"Kaduna"	"02062"	"25"	"2062250000"	"2062259999"	10000
+92	"Friends Wireless Limited"	"Kano"	"02064"	"25"	"2064250000"	"2064259999"	10000
+93	"Glo Mobile"	"National"	"0705"	"705"	"7050000000"	"7059999999"	10000000
+94	"Glo Mobile"	"National"	"0805"	"805"	"8050000000"	"8059999999"	10000000
+95	"Glo Mobile"	"National"	"0807"	"807"	"8070000000"	"8079999999"	10000000
+96	"Glo Mobile"	"National"	"0811"	"811"	"8110000000"	"8119999999"	10000000
+97	"Glo Mobile"	"National"	"0815"	"815"	"8150000000"	"8159999999"	10000000
+98	"Glo Mobile"	"National"	"0905"	"905"	"9050000000"	"9059999999"	10000000
+99	"Glo Mobile"	"National"	"0915"	"915"	"9150000000"	"9159999999"	10000000
+100	"Globacom Limited"	"Lagos"	"0201"	"903"	"2019030000"	"2019039999"	10000
+101	"Globacom Limited"	"Lagos"	"0201"	"904"	"2019040000"	"2019049999"	10000
+102	"Globacom Limited"	"Lagos"	"0201"	"905"	"2019050000"	"2019059999"	10000
+103	"Globacom Limited"	"Lagos"	"0201"	"906"	"2019060000"	"2019069999"	10000
+104	"Globacom Limited"	"Lagos"	"0201"	"907"	"2019070000"	"2019079999"	10000
+105	"Globacom Limited"	"Lagos"	"0201"	"908"	"2019080000"	"2019089999"	10000
+106	"Globacom Limited"	"Lagos"	"0201"	"909"	"2019090000"	"2019099999"	10000
+107	"Globacom Limited"	"Lagos"	"0201"	"910"	"2019100000"	"2019109999"	10000
+108	"Globacom Limited"	"Lagos"	"0201"	"911"	"2019110000"	"2019119999"	10000
+109	"Globacom Limited"	"Lagos"	"0201"	"912"	"2019120000"	"2019129999"	10000
+110	"Globacom Limited"	"Lagos"	"0201"	"913"	"2019130000"	"2019139999"	10000
+111	"Globacom Limited"	"Lagos"	"0201"	"914"	"2019140000"	"2019149999"	10000
+112	"Globacom Limited"	"Lagos"	"0201"	"915"	"2019150000"	"2019159999"	10000
+113	"Globacom Limited"	"Ibadan"	"0202"	"903"	"2029030000"	"2029039999"	10000
+114	"Globacom Limited"	"Ibadan"	"0202"	"904"	"2029040000"	"2029049999"	10000
+115	"Globacom Limited"	"Ibadan"	"0202"	"905"	"2029050000"	"2029059999"	10000
+116	"Globacom Limited"	"Abuja"	"0209"	"903"	"2099030000"	"2099039999"	10000
+117	"Globacom Limited"	"Abuja"	"0209"	"904"	"2099040000"	"2099049999"	10000
+118	"Globacom Limited"	"Ijebu-Ode"	"02037"	"93"	"2037930000"	"2037939999"	10000
+119	"Globacom Limited"	"Ijebu-Ode"	"02037"	"94"	"2037940000"	"2037949999"	10000
+120	"Globacom Limited"	"Ijebu-Ode"	"02037"	"95"	"2037950000"	"2037959999"	10000
+121	"Globacom Limited"	"Abeokuta"	"02039"	"93"	"2039930000"	"2039939999"	10000
+122	"Globacom Limited"	"Abeokuta"	"02039"	"94"	"2039940000"	"2039949999"	10000
+123	"Globacom Limited"	"Benin"	"02052"	"93"	"2052930000"	"2052939999"	10000
+124	"Globacom Limited"	"Benin"	"02052"	"94"	"2052940000"	"2052949999"	10000
+125	"Globacom Limited"	"Benin"	"02052"	"95"	"2052950000"	"2052959999"	10000
+126	"Globacom Limited"	"Benin"	"02052"	"96"	"2052960000"	"2052969999"	10000
+127	"Globacom Limited"	"Warri"	"02053"	"93"	"2053930000"	"2053939999"	10000
+128	"Globacom Limited"	"Warri"	"02053"	"94"	"2053940000"	"2053949999"	10000
+129	"Globacom Limited"	"Asaba"	"02056"	"93"	"2056930000"	"2056939999"	10000
+130	"Globacom Limited"	"Asaba"	"02056"	"94"	"2056940000"	"2056949999"	10000
+131	"Globacom Limited"	"Kaduna"	"02062"	"93"	"2062930000"	"2062939999"	10000
+132	"Globacom Limited"	"Kaduna"	"02062"	"94"	"2062940000"	"2062949999"	10000
+133	"Globacom Limited"	"Kaduna"	"02062"	"95"	"2062950000"	"2062959999"	10000
+134	"Globacom Limited"	"Kaduna"	"02062"	"96"	"2062960000"	"2062969999"	10000
+135	"Globacom Limited"	"Kano"	"02064"	"83"	"2064830000"	"2064839999"	10000
+136	"Globacom Limited"	"Kano"	"02064"	"84"	"2064840000"	"2064849999"	10000
+137	"Globacom Limited"	"Kano"	"02064"	"85"	"2064850000"	"2064859999"	10000
+138	"Globacom Limited"	"Kano"	"02064"	"86"	"2064860000"	"2064869999"	10000
+139	"Globacom Limited"	"Minna"	"02066"	"93"	"2066930000"	"2066939999"	10000
+140	"Globacom Limited"	"Minna"	"02066"	"94"	"2066940000"	"2066949999"	10000
+141	"Globacom Limited"	"Zaria"	"02069"	"93"	"2069930000"	"2069939999"	10000
+142	"Globacom Limited"	"Zaria"	"02069"	"94"	"2069940000"	"2069949999"	10000
+143	"Globacom Limited"	"Zaria"	"02069"	"95"	"2069950000"	"2069959999"	10000
+144	"Globacom Limited"	"Port Harcourt"	"02084"	"93"	"2084930000"	"2084939999"	10000
+145	"Globacom Limited"	"Port Harcourt"	"02084"	"94"	"2084940000"	"2084949999"	10000
+146	"GTS InfoTel Nigeria Limited"	"National"	"0700 shared"	"700"	"7003300001"	"7003310000"	10000
+147	"Imbil Telecom Solution Nigeria Ltd"	"Lagos"	"0201"	"310"	"2013100000"	"2013109999"	10000
+148	"Imbil Telecom Solution Nigeria Ltd"	"Lagos"	"0201"	"311"	"2013110000"	"2013119999"	10000
+149	"Imbil Telecom Solution Nigeria Ltd"	"Abuja"	"0209"	"310"	"2093100000"	"2093109999"	10000
+150	"Imbil Telecom Solution Nigeria Ltd"	"Abuja"	"0209"	"311"	"2093110000"	"2093119999"	10000
+151	"Inq Digital Nig Ltd (fmr Vodacom)"	"Lagos"	"0201"	"700"	"2017000000"	"2017009999"	10000
+152	"Inq Digital Nig Ltd (fmr Vodacom)"	"Abuja"	"0209"	"700"	"2097000000"	"2097004999"	5000
+153	"Inq Digital Nig Ltd (fmr Vodacom)"	"Port Harcourt"	"02084"	"70"	"2084700000"	"2084704999"	5000
+154	"Intarvas Communications Limited"	"National"	"0700 shared"	"700"	"7001340000"	"7001349999"	10000
+155	"Intarvas Communications Limited"	"National"	"0800 shared"	"800"	"8001340000"	"8001344999"	5000
+156	"Interconnect Clearinghouse Nig. Limited"	"National"	"0702 Shared"	"702"	"7022000000"	"7022000199"	200
+157	"Interra Networks Limited"	"National"	"0700 shared"	"700"	"7002200001"	"7002202000"	2000
+158	"Interra Networks Limited"	"National"	"0800 shared"	"800"	"8002200001"	"8002201000"	1000
+159	"iPNX Nigeria Limited"	"Lagos"	"0201"	"628"	"2016280000"	"2016284999"	5000
+160	"iPNX Nigeria Limited"	"Lagos"	"0201"	"629"	"2016290000"	"2016299999"	10000
+161	"iPNX Nigeria Limited"	"Lagos"	"0201"	"630"	"2016300000"	"2016309999"	10000
+162	"iPNX Nigeria Limited"	"Lagos"	"0201"	"631"	"2016310000"	"2016319999"	10000
+163	"iPNX Nigeria Limited"	"Lagos"	"0201"	"632"	"2016320000"	"2016329999"	10000
+164	"iPNX Nigeria Limited"	"Lagos"	"0201"	"633"	"2016330000"	"2016339999"	10000
+165	"iPNX Nigeria Limited"	"Lagos"	"0201"	"634"	"2016340000"	"2016349999"	10000
+166	"iPNX Nigeria Limited"	"Lagos"	"0201"	"635"	"2016350000"	"2016359999"	10000
+167	"iPNX Nigeria Limited"	"Lagos"	"0201"	"636"	"2016360000"	"2016369999"	10000
+168	"iPNX Nigeria Limited"	"Lagos"	"0201"	"637"	"2016370000"	"2016379999"	10000
+169	"iPNX Nigeria Limited"	"Lagos"	"0201"	"638"	"2016380000"	"2016389999"	10000
+170	"iPNX Nigeria Limited"	"Ibadan"	"0202"	"628"	"2026280000"	"2026289999"	10000
+171	"iPNX Nigeria Limited"	"Abuja"	"0209"	"623"	"2096230000"	"2096234999"	5000
+172	"iPNX Nigeria Limited"	"Abuja"	"0209"	"624"	"2096240000"	"2096249999"	10000
+173	"iPNX Nigeria Limited"	"Kano"	"02064"	"40"	"2064400000"	"2064409999"	10000
+174	"iPNX Nigeria Limited"	"Port Harcourt"	"02084"	"36"	"2084360000"	"2084364999"	5000
+175	"iPNX Nigeria Limited"	"Port Harcourt"	"02084"	"65"	"2084650000"	"2084659999"	10000
+176	"IT Sky Solutions Limited"	"Abuja"	"0209"	"360"	"2093600000"	"2093609999"	10000
+177	"IT Sky Solutions Limited"	"National"	"0700 shared"	"700"	"7003100000"	"7003199999"	100000
+178	"IT Sky Solutions Limited"	"National"	"0800 shared"	"800"	"8002230000"	"8002239999"	10000
+179	"Mafab Communications Limited"	"National"	"0801"	"801"	"8010000000"	"8010999999"	1000000
+180	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"290"	"2012900000"	"2012909999"	10000
+181	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"291"	"2012910000"	"2012919999"	10000
+182	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"292"	"2012920000"	"2012929999"	10000
+183	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"293"	"2012930000"	"2012939999"	10000
+184	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"295"	"2012950000"	"2012959999"	10000
+185	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"342"	"2013420000"	"2013424999"	5000
+186	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"453"	"2014530000"	"2014539999"	10000
+187	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"454"	"2014540000"	"2014549999"	10000
+188	"MTN Nig Comm. Ltd (fmr Visafone)"	"Lagos"	"0201"	"490"	"2014900000"	"2014904999"	5000
+189	"MTN Nig Comm. Ltd (fmr Visafone)"	"Ibadan"	"0202"	"290"	"2022900000"	"2022900499"	500
+190	"MTN Nig Comm. Ltd (fmr Visafone)"	"Ibadan"	"0202"	"291"	"2022910000"	"2022919999"	10000
+191	"MTN Nig Comm. Ltd (fmr Visafone)"	"Abuja"	"0209"	"290"	"2092900000"	"2092900999"	1000
+192	"MTN Nig Comm. Ltd (fmr Visafone)"	"Abuja"	"0209"	"291"	"2092910000"	"2092919999"	10000
+193	"MTN Nig Comm. Ltd (fmr Visafone)"	"Abuja"	"0209"	"292"	"2092920000"	"2092929999"	10000
+194	"MTN Nig Comm. Ltd (fmr Visafone)"	"Ilorin"	"02031"	"29"	"2031290000"	"2031299999"	10000
+195	"MTN Nig Comm. Ltd (fmr Visafone)"	"Abeokuta"	"02039"	"29"	"2039290000"	"2039299999"	10000
+196	"MTN Nig Comm. Ltd (fmr Visafone)"	"Enugu"	"02042"	"29"	"2042290000"	"2042299999"	10000
+197	"MTN Nig Comm. Ltd (fmr Visafone)"	"Enugu"	"02042"	"66"	"2042660000"	"2042669999"	10000
+198	"MTN Nig Comm. Ltd (fmr Visafone)"	"Abakaliki"	"02043"	"29"	"2043290000"	"2043299999"	10000
+199	"MTN Nig Comm. Ltd (fmr Visafone)"	"Onitsha"	"02046"	"28"	"2046280000"	"2046289999"	10000
+200	"MTN Nig Comm. Ltd (fmr Visafone)"	"Onitsha"	"02046"	"29"	"2046290000"	"2046290999"	1000
+201	"MTN Nig Comm. Ltd (fmr Visafone)"	"Onitsha"	"02046"	"66"	"2046660000"	"2046669999"	10000
+202	"MTN Nig Comm. Ltd (fmr Visafone)"	"Awka"	"02048"	"29"	"2048290000"	"2048299999"	10000
+203	"MTN Nig Comm. Ltd (fmr Visafone)"	"Awka"	"02048"	"88"	"2048880000"	"2048889999"	10000
+204	"MTN Nig Comm. Ltd (fmr Visafone)"	"Benin"	"02052"	"29"	"2052290000"	"2052299999"	10000
+205	"MTN Nig Comm. Ltd (fmr Visafone)"	"Warri"	"02053"	"29"	"2053290000"	"2053299999"	10000
+206	"MTN Nig Comm. Ltd (fmr Visafone)"	"Agbor"	"02055"	"29"	"2055290000"	"2055299999"	10000
+207	"MTN Nig Comm. Ltd (fmr Visafone)"	"Asaba"	"02056"	"29"	"2056290000"	"2056299999"	10000
+208	"MTN Nig Comm. Ltd (fmr Visafone)"	"Kaduna"	"02062"	"29"	"2062290000"	"2062299999"	10000
+209	"MTN Nig Comm. Ltd (fmr Visafone)"	"Kano"	"02064"	"29"	"2064290000"	"2064290499"	500
+210	"MTN Nig Comm. Ltd (fmr Visafone)"	"Kano"	"02064"	"43"	"2064430000"	"2064439999"	10000
+211	"MTN Nig Comm. Ltd (fmr Visafone)"	"Katsina"	"02065"	"29"	"2065290000"	"2065299999"	10000
+212	"MTN Nig Comm. Ltd (fmr Visafone)"	"Zaria"	"02069"	"29"	"2069290000"	"2069299999"	10000
+213	"MTN Nig Comm. Ltd (fmr Visafone)"	"Jos"	"02073"	"29"	"2073290000"	"2073299999"	10000
+214	"MTN Nig Comm. Ltd (fmr Visafone)"	"Maiduguri"	"02076"	"29"	"2076290000"	"2076299999"	10000
+215	"MTN Nig Comm. Ltd (fmr Visafone)"	"Aba"	"02082"	"29"	"2082290000"	"2082299999"	10000
+216	"MTN Nig Comm. Ltd (fmr Visafone)"	"Aba"	"02082"	"44"	"2082440000"	"2082449999"	10000
+217	"MTN Nig Comm. Ltd (fmr Visafone)"	"Aba"	"02082"	"55"	"2082550000"	"2082559999"	10000
+218	"MTN Nig Comm. Ltd (fmr Visafone)"	"Owerri"	"02083"	"43"	"2083430000"	"2083439999"	10000
+219	"MTN Nig Comm. Ltd (fmr Visafone)"	"Owerri"	"02083"	"66"	"2083660000"	"2083669999"	10000
+220	"MTN Nig Comm. Ltd (fmr Visafone)"	"Port Harcourt"	"02084"	"29"	"2084290000"	"2084290999"	1000
+221	"MTN Nig Comm. Ltd (fmr Visafone)"	"Port Harcourt"	"02084"	"30"	"2084300000"	"2084309999"	10000
+222	"MTN Nig Comm. Ltd (fmr Visafone)"	"Port Harcourt"	"02084"	"55"	"2084550000"	"2084559999"	10000
+223	"MTN Nig Comm. Ltd (fmr Visafone)"	"Port Harcourt"	"02084"	"66"	"2084660000"	"2084669999"	10000
+224	"MTN Nig Comm. Ltd (fmr Visafone)"	"Uyo"	"02085"	"29"	"2085290000"	"2085299999"	10000
+225	"MTN Nig Comm. Ltd (fmr Visafone)"	"Uyo"	"02085"	"66"	"2085660000"	"2085669999"	10000
+226	"MTN Nig Comm. Ltd (fmr Visafone)"	"Calabar"	"02087"	"29"	"2087290000"	"2087299999"	10000
+227	"MTN Nig Comm. Ltd (fmr Visafone)"	"Calabar"	"02087"	"66"	"2087660000"	"2087669999"	10000
+228	"MTN Nig Comm. Ltd (fmr Visafone)"	"Calabar"	"02087"	"77"	"2087770000"	"2087779999"	10000
+229	"MTN Nig Comm. Ltd (fmr Visafone)"	"Umuahia"	"02088"	"29"	"2088290000"	"2088299999"	10000
+230	"MTN Nig Comm. Ltd (fmr Visafone)"	"Umuahia"	"02088"	"66"	"2088660000"	"2088669999"	10000
+231	"MTN Nig Comm. Ltd (fmr Visafone)"	"National"	"0702"	"702"	"7025000000"	"7026999999"	2000000
+232	"MTN Nig Comm. Ltd (fmr Visafone)"	"National"	"0704"	"704"	"7040000000"	"7049999999"	10000000
+233	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"460"	"2014600000"	"2014609999"	10000
+234	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"461"	"2014610000"	"2014619999"	10000
+235	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"462"	"2014620000"	"2014629999"	10000
+236	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"463"	"2014630000"	"2014639999"	10000
+237	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"464"	"2014640000"	"2014649999"	10000
+238	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"465"	"2014650000"	"2014659999"	10000
+239	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"466"	"2014660000"	"2014669999"	10000
+240	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"467"	"2014670000"	"2014679999"	10000
+241	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"468"	"2014680000"	"2014689999"	10000
+242	"MTN Nig. Comm Plc (Fixed Lines)"	"Lagos"	"0201"	"469"	"2014690000"	"2014699999"	10000
+243	"MTN Nig. Comm Plc (Fixed Lines)"	"Ibadan"	"0202"	"461"	"2024610000"	"2024619999"	10000
+244	"MTN Nig. Comm Plc (Fixed Lines)"	"Abuja"	"0209"	"460"	"2094600000"	"2094609999"	10000
+245	"MTN Nig. Comm Plc (Fixed Lines)"	"Abuja"	"0209"	"461"	"2094610000"	"2094619999"	10000
+246	"MTN Nig. Comm Plc (Fixed Lines)"	"Abuja"	"0209"	"462"	"2094620000"	"2094629999"	10000
+247	"MTN Nig. Comm Plc (Fixed Lines)"	"Abuja"	"0209"	"463"	"2094630000"	"2094639999"	10000
+248	"MTN Nig. Comm Plc (Fixed Lines)"	"Ilorin"	"02031"	"46"	"2031460000"	"2031469999"	10000
+249	"MTN Nig. Comm Plc (Fixed Lines)"	"Warri"	"02053"	"46"	"2053460000"	"2053469999"	10000
+250	"MTN Nig. Comm Plc (Fixed Lines)"	"Kaduna"	"02062"	"46"	"2062460000"	"2062469999"	10000
+251	"MTN Nig. Comm Plc (Fixed Lines)"	"Kano"	"02064"	"46"	"2064460000"	"2064469999"	10000
+252	"MTN Nig. Comm Plc (Fixed Lines)"	"Aba"	"02082"	"46"	"2082460000"	"2082469999"	10000
+253	"MTN Nig. Comm Plc (Fixed Lines)"	"Port Harcourt"	"02084"	"44"	"2084440000"	"2084449999"	10000
+254	"MTN Nig. Comm Plc (Fixed Lines)"	"Port Harcourt"	"02084"	"45"	"2084450000"	"2084459999"	10000
+255	"MTN Nig. Comm Plc (Fixed Lines)"	"Port Harcourt"	"02084"	"46"	"2084460000"	"2084469999"	10000
+256	"MTN Nig. Comm Plc (Fixed Lines)"	"Calabar"	"02087"	"46"	"2087460000"	"2087469999"	10000
+257	"MTN Nig. Comm Plc (Fixed Lines)"	"Yenagoa"	"02089"	"46"	"2089460000"	"2089469999"	10000
+258	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0703"	"703"	"7030000000"	"7039999999"	10000000
+259	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0706"	"706"	"7060000000"	"7069999999"	10000000
+260	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0707"	"707"	"7070000000"	"7079999999"	10000000
+261	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0803"	"803"	"8030000000"	"8039999999"	10000000
+262	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0806"	"806"	"8060000000"	"8069999999"	10000000
+263	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0810"	"810"	"8100000000"	"8109999999"	10000000
+264	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0813"	"813"	"8130000000"	"8139999999"	10000000
+265	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0814"	"814"	"8140000000"	"8149999999"	10000000
+266	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0816"	"816"	"8160000000"	"8169999999"	10000000
+267	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0903"	"903"	"9030000000"	"9039999999"	10000000
+268	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0906"	"906"	"9060000000"	"9069999999"	10000000
+269	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0913"	"913"	"9130000000"	"9139999999"	10000000
+270	"MTN Nig. Comm Plc (Mobile Lines)"	"National"	"0916"	"916"	"9160000000"	"9169999999"	10000000
+271	"MYD Technologies Limited"	"Lagos"	"0201"	"255"	"2012550000"	"2012559999"	10000
+272	"NATCOM Dev. & Inv. Ltd (nTel)"	"Lagos"	"0201"	"424"	"2014240000"	"2014249999"	10000
+273	"NATCOM Dev. & Inv. Ltd (nTel)"	"Abuja"	"0209"	"604"	"2096040000"	"2096049999"	10000
+274	"NATCOM Dev. & Inv. Ltd (nTel)"	"Port Harcourt"	"02084"	"20"	"2084200000"	"2084209999"	10000
+275	"NATCOM Dev. & Inv. Ltd (nTel)"	"National"	"0804"	"804"	"8040000000"	"8049999999"	10000000
+276	"Nationwaves Telcom Nigeria Limited"	"Abuja"	"0209"	"301"	"2093010000"	"2093014999"	5000
+277	"NativeTalk Communications Limited"	"Lagos"	"0201"	"410"	"2014100000"	"2014109999"	10000
+278	"NativeTalk Communications Limited"	"Lagos"	"0201"	"411"	"2014110000"	"2014119999"	10000
+279	"NativeTalk Communications Limited"	"Lagos"	"0201"	"412"	"2014120000"	"2014129999"	10000
+280	"NativeTalk Communications Limited"	"Lagos"	"0201"	"413"	"2014130000"	"2014139999"	10000
+281	"NativeTalk Communications Limited"	"Lagos"	"0201"	"414"	"2014140000"	"2014149999"	10000
+282	"NextGen Telecoms Limited"	"Lagos"	"0201"	"640"	"2016400000"	"2016409999"	10000
+283	"NIPOL Mega Empire Limited"	"Lagos"	"0201"	"390"	"2013900000"	"2013909999"	10000
+284	"NIPOL Mega Empire Limited"	"Lagos"	"0201"	"391"	"2013910000"	"2013919999"	10000
+285	"NIPOL Mega Empire Limited"	"Lagos"	"0201"	"392"	"2013920000"	"2013929999"	10000
+286	"NIPOL Mega Empire Limited"	"Lagos"	"0201"	"393"	"2013930000"	"2013939999"	10000
+287	"NIPOL Mega Empire Limited"	"Lagos"	"0201"	"394"	"2013940000"	"2013949999"	10000
+288	"NIPOL Mega Empire Limited"	"Abuja"	"0209"	"390"	"2093900000"	"2093909999"	10000
+289	"NIPOL Mega Empire Limited"	"Abuja"	"0209"	"391"	"2093910000"	"2093919999"	10000
+290	"NIPOL Mega Empire Limited"	"Abuja"	"0209"	"392"	"2093920000"	"2093929999"	10000
+291	"NIPOL Mega Empire Limited"	"Abuja"	"0209"	"393"	"2093930000"	"2093939999"	10000
+292	"NIPOL Mega Empire Limited"	"Abuja"	"0209"	"394"	"2093940000"	"2093949999"	10000
+293	"Openskys Services Limited"	"National"	"0702"	"702"	"7023000000"	"7023999999"	1000000
+294	"Ratel Plus Nig. Limited"	"Abuja"	"0209"	"701"	"2097010000"	"2097019999"	10000
+295	"Ratel Plus Nig. Limited"	"Abuja"	"0209"	"702"	"2097020000"	"2097029999"	10000
+296	"Ratel Plus Nig. Limited"	"Abuja"	"0209"	"703"	"2097030000"	"2097039999"	10000
+297	"Ratel Plus Nig. Limited"	"Abuja"	"0209"	"704"	"2097040000"	"2097049999"	10000
+298	"Ratel Plus Nig. Limited"	"Abuja"	"0209"	"705"	"2097050000"	"2097059999"	10000
+299	"Ratel Plus Nig. Limited"	"Kano"	"02064"	"70"	"2064700000"	"2064709999"	10000
+300	"Ratel Plus Nig. Limited"	"Kano"	"02064"	"71"	"2064710000"	"2064719999"	10000
+301	"Ratel Plus Nig. Limited"	"Kano"	"02064"	"72"	"2064720000"	"2064729999"	10000
+302	"Ratel Plus Nig. Limited"	"Kano"	"02064"	"73"	"2064730000"	"2064739999"	10000
+303	"Ratel Plus Nig. Limited"	"Kano"	"02064"	"74"	"2064740000"	"2064749999"	10000
+304	"Realife Telecommunications Limited"	"Abuja"	"0209"	"305"	"2093050000"	"2093059999"	10000
+305	"Reston Communication Services Ltd"	"National"	"0700 shared"	"700"	"7001030000"	"7001039999"	10000
+306	"RouteCall Communications Limited"	"Lagos"	"0201"	"330"	"2013300000"	"2013309999"	10000
+307	"Skyway Technology & Services Ltd"	"Abuja"	"0209"	"299"	"2092990000"	"2092999999"	10000
+308	"Smile Communications Nigeria Ltd"	"National"	"0702"	"702"	"7020000000"	"7020999999"	1000000
+309	"Smooth Multi-Service Platform Limited"	"Ilorin"	"02031"	"50"	"2031500000"	"2031509999"	10000
+310	"Smooth Multi-Service Platform Limited"	"Ilorin"	"02031"	"51"	"2031510000"	"2031519999"	10000
+311	"Smooth Multi-Service Platform Limited"	"Ilorin"	"02031"	"52"	"2031520000"	"2031529999"	10000
+312	"Smooth Multi-Service Platform Limited"	"Ilorin"	"02031"	"53"	"2031530000"	"2031539999"	10000
+313	"Smooth Multi-Service Platform Limited"	"Ilorin"	"02031"	"54"	"2031540000"	"2031549999"	10000
+314	"Spectranet Limited"	"Lagos"	"0201"	"501"	"2015010000"	"2015019999"	10000
+315	"Spectranet Limited"	"Lagos"	"0201"	"502"	"2015020000"	"2015029999"	10000
+316	"Spectranet Limited"	"Lagos"	"0201"	"503"	"2015030000"	"2015039999"	10000
+317	"Spectranet Limited"	"Ibadan"	"0202"	"501"	"2025010000"	"2025011999"	2000
+318	"Spectranet Limited"	"Abuja"	"0209"	"501"	"2095010000"	"2095019999"	10000
+319	"Spectranet Limited"	"Port Harcourt"	"02084"	"50"	"2084500000"	"2084501999"	2000
+320	"Swift Networks Limited"	"Lagos"	"0201"	"710"	"2017100000"	"2017101999"	2000
+321	"Swift Networks Limited"	"Lagos"	"0201"	"711"	"2017110000"	"2017119999"	10000
+322	"Swift Networks Limited"	"Lagos"	"0201"	"712"	"2017120000"	"2017129999"	10000
+323	"Swift Networks Limited"	"Lagos"	"0201"	"713"	"2017130000"	"2017139999"	10000
+324	"Swift Networks Limited"	"Lagos"	"0201"	"714"	"2017140000"	"2017149999"	10000
+325	"Swift Networks Limited"	"Lagos"	"0201"	"715"	"2017150000"	"2017159999"	10000
+326	"Swift Telephone Networks Limited"	"Lagos"	"0201"	"343"	"2013430000"	"2013439999"	10000
+327	"Swift Telephone Networks Limited"	"Lagos"	"0201"	"344"	"2013440000"	"2013449999"	10000
+328	"Swift Telephone Networks Limited"	"Lagos"	"0201"	"345"	"2013450000"	"2013459999"	10000
+329	"Swift Telephone Networks Limited"	"Lagos"	"0201"	"346"	"2013460000"	"2013469999"	10000
+330	"Swift Telephone Networks Limited"	"Lagos"	"0201"	"347"	"2013470000"	"2013479999"	10000
+331	"Swift Telephone Networks Limited"	"Lagos"	"0201"	"348"	"2013480000"	"2013489999"	10000
+332	"Telewyz Limited"	"National"	"0710"	"710"	"7100000000"	"7100999999"	1000000
+333	"Telvida International Systems Ltd"	"National"	"0700 shared"	"700"	"7002210000"	"7002214999"	5000
+334	"Telvida International Systems Ltd"	"National"	"0800 shared"	"800"	"8002210000"	"8002214999"	5000
+335	"Temlio Communication Limited"	"Lagos"	"0201"	"350"	"2013500000"	"2013509999"	10000
+336	"Tizeti Network Limited"	"Lagos"	"0201"	"229"	"2012290000"	"2012299999"	10000
+337	"TNT Global Technologies Int'l Ltd"	"Lafia"	"02047"	"63"	"2047630000"	"2047630999"	1000
+338	"Trucall Solutions Limited"	"Lagos"	"0201"	"252"	"2012520000"	"2012529999"	10000
+339	"Vezeti Services Limited"	"Lagos"	"0201"	"887"	"2018880000"	"2018889999"	10000
+340	"Vezeti Services Limited"	"Lagos"	"0201"	"888"	"2018880000"	"2018889999"	10000
+341	"Vezeti Services Limited"	"Lagos"	"0201"	"889"	"2018880000"	"2018889999"	10000
