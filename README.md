@@ -1,14 +1,14 @@
 # Nigerian Mobile Number Validator
 
-A rigorous library for validating Nigerian mobile numbers with strict compliance to the official Nigerian Communications Commission (NCC) numbering plan. Built in TypeScript with advanced, enterprise-grade features yet simple enough for general use. This library combines strict NCC numbering plan compliance with robust security features for deployment in critical production environments.
+The most rigorous library for validating Nigerian mobile numbers with strict compliance to the official Nigerian Communications Commission (NCC) numbering plan. Built in TypeScript with advanced, enterprise-grade features yet simple enough for general use. This library combines strict NCC numbering plan compliance with robust security features for deployment in critical production environments.
 
 ![npm version](https://img.shields.io/npm/v/nigerian-mobile-validator.svg)
 ![license](https://img.shields.io/npm/l/nigerian-mobile-validator.svg)
-![build status](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/npm-publish.yml)
 ![SonarQube](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/sonar.yml?label=SonarQube)
 ![Snyk Security](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/snyk.yml?label=Snyk)
 ![CodeQL Analysis](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/codeql-analysis.yml?label=CodeQL)
 ![Dependabot](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=dependabot)
+![build status](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/npm-publish.yml)
 
 ## Enterprise Features
 
