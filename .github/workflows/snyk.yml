@@ -1,0 +1,44 @@
+name: Snyk Security Checks
+
+on:
+  push:
+    branches-ignore:
+      - main
+      - master
+  pull_request:
+    branches: 
+      - main
+      - master
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly scan on Sundays
+
+jobs:
+  security-checks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run ESLint security checks
+      run: npm run lint
+    
+    - name: Run tests with coverage
+      run: npm run test
+    
+    - name: Snyk security scan
+      uses: snyk/actions/node@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --all-projects --org=${{ secrets.SNYK_ORG }} --severity-threshold=high
