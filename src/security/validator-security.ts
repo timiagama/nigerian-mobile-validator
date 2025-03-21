@@ -246,7 +246,7 @@ export class ValidatorSecurity {
      */
     private static sanitizeObjectProperties(obj: any): any {
         const result: any = {};
-
+      
         for (const [key, value] of Object.entries(obj)) {
             // Check for sensitive field names
             const isSensitiveField = /phone|mobile|number|msisdn|subscriber/i.test(key);
