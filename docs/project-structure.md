@@ -359,7 +359,7 @@ This configuration ensures maximum compatibility across different JavaScript env
 
 ## Testing Infrastructure
 
-The project uses Jest for testing with a comprehensive test suite:
+The project uses Jest for testing with a comprehensive test suite providing over 150 tests:
 
 ### Test Types
 

@@ -26,18 +26,18 @@ export class TestDataGeneratorValidNumbers extends TestDataGeneratorBase {
     static generateValidNumberForTelco(telco: Telco): string {
         // Handle special case for 702 range
         if (telco === Telco.Smile) {
-            return `0${NetworkAccessCode.n702}${this.random702SubscriberNumber('Smile')}`;
+            return `0${NetworkAccessCode.n702}${TestDataGeneratorValidNumbers.random702SubscriberNumber('Smile')}`;
         } else if (telco === Telco.InterconnectClearinghouse) {
-            return `0${NetworkAccessCode.n702}${this.random702SubscriberNumber('InterconnectClearinghouse')}`;
+            return `0${NetworkAccessCode.n702}${TestDataGeneratorValidNumbers.random702SubscriberNumber('InterconnectClearinghouse')}`;
         } else if (telco === Telco.Openskys) {
-            return `0${NetworkAccessCode.n702}${this.random702SubscriberNumber('Openskys')}`;
+            return `0${NetworkAccessCode.n702}${TestDataGeneratorValidNumbers.random702SubscriberNumber('Openskys')}`;
         } else if (telco === Telco.Visafone) {
-            return `0${NetworkAccessCode.n702}${this.random702SubscriberNumber('Visafone')}`;
+            return `0${NetworkAccessCode.n702}${TestDataGeneratorValidNumbers.random702SubscriberNumber('Visafone')}`;
         }
 
         // For other telcos
         const networkCode = this.randomNetworkCodeForTelco(telco);
-        return this.generateValidNumber(networkCode);
+        return TestDataGeneratorValidNumbers.generateValidNumber(networkCode);
     }
 
     /**
@@ -113,29 +113,29 @@ export class TestDataGeneratorValidNumbers extends TestDataGeneratorBase {
 
         // MTN numbers
         for (let i = 0; i < mtnCount; i++) {
-            numbers.push(this.generateValidNumberForTelco(Telco.MTN));
+            numbers.push(TestDataGeneratorValidNumbers.generateValidNumberForTelco(Telco.MTN));
         }
 
         // Airtel numbers
         for (let i = 0; i < airtelCount; i++) {
-            numbers.push(this.generateValidNumberForTelco(Telco.Airtel));
+            numbers.push(TestDataGeneratorValidNumbers.generateValidNumberForTelco(Telco.Airtel));
         }
 
         // Glo numbers
         for (let i = 0; i < gloCount; i++) {
-            numbers.push(this.generateValidNumberForTelco(Telco.Globacom));
+            numbers.push(TestDataGeneratorValidNumbers.generateValidNumberForTelco(Telco.Globacom));
         }
 
         // 9Mobile numbers
         for (let i = 0; i < nineMobileCount; i++) {
-            numbers.push(this.generateValidNumberForTelco(Telco.NineMobile));
+            numbers.push(TestDataGeneratorValidNumbers.generateValidNumberForTelco(Telco.NineMobile));
         }
 
         // Other telcos
         const otherTelcos = [Telco.Smile, Telco.Telewyz, Telco.Mafab, Telco.Visafone, Telco.InterconnectClearinghouse, Telco.Openskys];
         for (let i = 0; i < otherCount; i++) {
             const telco = chance.pickone(otherTelcos);
-            numbers.push(this.generateValidNumberForTelco(telco));
+            numbers.push(TestDataGeneratorValidNumbers.generateValidNumberForTelco(telco));
         }
 
         // Shuffle the array to mix telcos

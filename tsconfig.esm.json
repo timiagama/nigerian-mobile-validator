@@ -1,5 +1,3 @@
-// tsconfig.esm.json (ES modules build)
-
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {

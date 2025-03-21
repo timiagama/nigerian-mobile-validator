@@ -1,5 +1,3 @@
-// tsconfig.types.json (Type declarations)
-
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {

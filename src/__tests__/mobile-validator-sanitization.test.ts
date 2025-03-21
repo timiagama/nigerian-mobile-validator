@@ -10,7 +10,7 @@ describe('NigerianMobileNumberValidator Sanitization', () => {
         test('should remove plus sign', () => {
             const networkCode = NetworkAccessCode.n803;
             const internationalPlusNumber = TestDataGenerator.generateInternationalPlusNumber(networkCode);
-            const expectedResult = internationalPlusNumber.replace('+', '');
+            const expectedResult = internationalPlusNumber.replace(/\+/g, '');
 
             expect(NigerianMobileNumberValidator.sanitizeUserProvidedMobileNumber(internationalPlusNumber))
                 .toBe(expectedResult);
@@ -64,10 +64,12 @@ describe('NigerianMobileNumberValidator Sanitization', () => {
                 complexNumber.substring(7);
 
             // Replace some zeros with 'o' and 'O'
-            complexNumber = complexNumber.replace('0', 'o').replace('0', 'O');
+            // deepcode ignore GlobalReplacementRegex/test: <The randomly generated mobile number should only have a leading '+' sign>
+            complexNumber = complexNumber.replace('0', 'o').replace('0', 'O').replace('+', '');
 
             // The expected result should have no '+', no spaces, and 'o'/'O' replaced with '0'
             const expectedResult = complexNumber
+                // deepcode ignore GlobalReplacementRegex/test: <The randomly generated mobile number should only have a leading '+' sign>
                 .replace('+', '')
                 .replace(/\s+/g, '')
                 .replace(/[oO]/g, '0');

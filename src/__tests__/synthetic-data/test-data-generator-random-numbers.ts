@@ -37,7 +37,7 @@ export class TestDataGeneratorRandomNumbers extends TestDataGeneratorBase {
         }
 
         // Potentially add some "noise" to the number
-        const noiseType = chance.pickone(['none', 'spaces', 'o-instead-of-0', 'non-numeric', 'wrong-length']);
+        const noiseType: 'none' | 'spaces' | 'o-instead-of-0' | 'non-numeric' | 'wrong-length' = chance.pickone(['none', 'spaces', 'o-instead-of-0', 'non-numeric', 'wrong-length']);
 
         switch (noiseType) {
             case 'none':
@@ -52,8 +52,6 @@ export class TestDataGeneratorRandomNumbers extends TestDataGeneratorBase {
                 return chance.bool() ?
                     TestDataGeneratorInvalidNumbers.makeTooLong(number) :
                     TestDataGeneratorInvalidNumbers.makeTooShort(number);
-            default:
-                return number;
         }
     }
 

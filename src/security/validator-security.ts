@@ -183,7 +183,7 @@ export class ValidatorSecurity {
      */
     private static sanitizeLogMessage(message: string): string {
         // Look for patterns that might be phone numbers and mask them
-        return message.replace(/(\+?[0-9]{1,3})?[0-9]{10,13}/g, match => this.maskPhoneNumber(match));
+        return message.replace(/(\+?[0-9]{1,3})?[0-9]{10,13}/g, match => ValidatorSecurity.maskPhoneNumber(match));
     }
 
     /**
@@ -191,38 +191,75 @@ export class ValidatorSecurity {
      * @private
      */
     private static sanitizeLogMeta(meta: any[]): any[] {
-        return meta.map(item => {
-            if (typeof item === 'string') {
-                return this.sanitizeLogMessage(item);
-            } else if (typeof item === 'object' && item !== null) {
-                return this.sanitizeLogObject(item);
+        const sanitizedMeta = [];
+
+        for (const metaItem of meta) {
+            if (typeof metaItem === 'string') {
+                sanitizedMeta.push(ValidatorSecurity.sanitizeLogMessage(metaItem));
+            } else if (typeof metaItem === 'object' && metaItem !== null) {
+                sanitizedMeta.push(ValidatorSecurity.sanitizeLogObject(metaItem));
+            } else {
+                sanitizedMeta.push(metaItem);
             }
-            return item;
-        });
+        }
+
+        return sanitizedMeta;
     }
 
     /**
-     * Recursively sanitizes an object to mask sensitive fields
-     * @private
-     */
+ * Recursively sanitizes an object to mask sensitive fields
+ * @private
+ */
     private static sanitizeLogObject(obj: any): any {
+        // Handle arrays separately
         if (Array.isArray(obj)) {
-            return obj.map(item => this.sanitizeLogMeta([item])[0]);
+            return ValidatorSecurity.sanitizeArray(obj);
         }
 
+        // Handle regular objects
+        return ValidatorSecurity.sanitizeObjectProperties(obj);
+    }
+
+    /**
+     * Sanitizes an array's items
+     * @private
+     */
+    private static sanitizeArray(array: any[]): any[] {
+        const sanitizedArray = [];
+
+        for (const item of array) {
+            if (typeof item === 'string') {
+                sanitizedArray.push(ValidatorSecurity.sanitizeLogMessage(item));
+            } else if (typeof item === 'object' && item !== null) {
+                sanitizedArray.push(ValidatorSecurity.sanitizeLogObject(item));
+            } else {
+                sanitizedArray.push(item);
+            }
+        }
+
+        return sanitizedArray;
+    }
+
+    /**
+     * Sanitizes an object's properties
+     * @private
+     */
+    private static sanitizeObjectProperties(obj: any): any {
         const result: any = {};
+
         for (const [key, value] of Object.entries(obj)) {
             // Check for sensitive field names
             const isSensitiveField = /phone|mobile|number|msisdn|subscriber/i.test(key);
 
             if (isSensitiveField && typeof value === 'string') {
-                result[key] = this.maskPhoneNumber(value);
+                result[key] = ValidatorSecurity.maskPhoneNumber(value);
             } else if (typeof value === 'object' && value !== null) {
-                result[key] = this.sanitizeLogObject(value);
+                result[key] = ValidatorSecurity.sanitizeLogObject(value);
             } else {
                 result[key] = value;
             }
         }
+
         return result;
     }
 

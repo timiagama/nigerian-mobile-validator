@@ -1,5 +1,3 @@
-// tsconfig.cjs.json (CommonJS build)
-
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
