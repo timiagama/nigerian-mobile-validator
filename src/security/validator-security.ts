@@ -207,9 +207,9 @@ export class ValidatorSecurity {
     }
 
     /**
- * Recursively sanitizes an object to mask sensitive fields
- * @private
- */
+     * Recursively sanitizes an object to mask sensitive fields
+     * @private
+     */
     private static sanitizeLogObject(obj: any): any {
         // Handle arrays separately
         if (Array.isArray(obj)) {

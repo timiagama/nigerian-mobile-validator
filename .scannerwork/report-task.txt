@@ -3,5 +3,5 @@ projectKey=timiagama_nigerian-mobile-validator
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.60973
 dashboardUrl=https://sonarcloud.io/dashboard?id=timiagama_nigerian-mobile-validator
-ceTaskId=AZW5v0EGqr2BLwVKke6r
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZW5v0EGqr2BLwVKke6r
+ceTaskId=AZW6RDxLvm7nrkc8NwdB
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZW6RDxLvm7nrkc8NwdB
