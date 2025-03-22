@@ -13,7 +13,8 @@ on:
 jobs:
   sonarqube:
     name: SonarQube
-    if: github.event_name != 'pull_request'
+    # Only run SonarQube on main branch pushes, not on PRs or other branches
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
