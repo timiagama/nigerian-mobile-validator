@@ -27,3 +27,6 @@ Thumbs.db
 
 # Jest coverage reports
 coverage/
+
+# SonarQube scanner files
+.scannerwork/

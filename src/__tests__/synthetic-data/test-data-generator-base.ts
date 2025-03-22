@@ -199,7 +199,7 @@ export class TestDataGeneratorBase {
                 !op.startsWith('Withdrawn') && op !== 'Returned');
 
             const selectedOperator = chance.pickone(validOperators);
-            return this.random702SubscriberNumber(selectedOperator);
+            return TestDataGeneratorBase.random702SubscriberNumber(selectedOperator);
         }
 
         // For all other network codes, generate a standard 7-digit number
@@ -225,7 +225,7 @@ export class TestDataGeneratorBase {
             throw new Error(`Invalid Telcos cannot be used when selecting random network codes. Telco name: ${telco}`)
         }
 
-        const codes = this.networkCodesByTelco[telco] ?? [];
+        const codes = TestDataGeneratorBase.networkCodesByTelco[telco] ?? [];
         if (codes.length == 0) throw new Error(`Unexpected error: this telco (${telco}) has no network codes`);
         return chance.pickone(codes);
     }
@@ -235,14 +235,14 @@ export class TestDataGeneratorBase {
      */
     protected static randomNetworkCode(): NetworkAccessCode {
         this.initialize();
-        return chance.pickone(this.allValidNetworkCodes);
+        return chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
     }
 
     /**
      * Get a random invalid network code
      */
     protected static randomInvalidNetworkCode(): number {
-        return chance.pickone(this.invalidNetworkCodes);
+        return chance.pickone(TestDataGeneratorBase.invalidNetworkCodes);
     }
 
     /**

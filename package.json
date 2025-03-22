@@ -1,6 +1,6 @@
 {
     "name": "nigerian-mobile-validator",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "The most rigorous library for validating Nigerian mobile numbers with strict compliance to NCC standards. Built in TypeScript with enterprise-grade features, yet simple enough for general use.",
     "type": "module",
     "main": "./dist/cjs/index.js",
@@ -39,9 +39,7 @@
         "snyk:monitor": "snyk monitor --all-projects",
         "snyk:wizard": "snyk wizard",
         "security": "npm run snyk",
-        "sonar:local": "sonar-scanner -Dproject.settings=sonar-project-local.properties",
-        "sonar:cloud": "sonar-scanner",
-        "sonar": "npm run sonar:cloud",
+        "sonar": "sonar-scanner",
         "precommit": "npm run lint && npm test",
         "prepush": "npm run lint && npm run security",
         "ci": "npm run build && npm test && npm run security && npm run snyk:monitor && npm run sonar",

@@ -340,7 +340,13 @@ The library implements various security measures to protect against common vulne
    - CodeQL analysis
    - Snyk vulnerability scanning
    - SonarQube code quality checks
+   - ESLint with security plugins
    - Dependabot dependency updates
+   - Husky to ensure that certain checks run automatically at specific points in our Git workflow
+
+## Testing Infrastructure
+
+The project uses Jest for testing, with a comprehensive test suite providing over 150 tests, and includes a sophisticated system for generating test data.
 
 ## Performance Considerations
 

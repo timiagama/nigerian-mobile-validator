@@ -2,20 +2,19 @@ name: SonarQube Analysis
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
-      - master
+      - release
   pull_request:
     branches: 
       - main
-      - master
     types: [opened, synchronize, reopened]
-  schedule:
-    - cron: '0 0 * * 0'  # Weekly scan on Sundays
 
 jobs:
   sonarqube:
     name: SonarQube
+    # Only run SonarQube on main branch pushes, not on PRs or other branches
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
