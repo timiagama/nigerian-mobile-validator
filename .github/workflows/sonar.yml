@@ -2,13 +2,12 @@ name: SonarQube Analysis
 
 on:
   push:
-    branches-ignore:
+    branches:
       - main
-      - master
+      - release
   pull_request:
     branches: 
       - main
-      - master
     types: [opened, synchronize, reopened]
 
 jobs:
