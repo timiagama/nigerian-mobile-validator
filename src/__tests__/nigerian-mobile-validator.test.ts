@@ -9,6 +9,8 @@ import { getDefaultLogger } from '../logging/logger';
 import { TestDataGenerator } from './synthetic-data/test-data-generator';
 import { TestDataGeneratorBase } from './synthetic-data/test-data-generator-base';
 import Chance from 'chance';
+import { MobileNumberValidationResult } from '../number-validation/mobile-number-validation-result';
+import { TypingDirection } from '../number-validation/typing-direction';
 
 // Initialize Chance with a seed for reproducibility if needed
 const chance = new Chance();
@@ -26,7 +28,7 @@ describe('NigerianMobileNumberValidator', () => {
 
     describe('Basic validation', () => {
         test('should handle empty input', () => {
-            const result = validator.validate('');
+            const result: MobileNumberValidationResult = validator.validate('');
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.ContainsNonNumericChars);
         });
@@ -36,13 +38,13 @@ describe('NigerianMobileNumberValidator', () => {
             const validNumber = TestDataGenerator.generateValidNumber(NetworkAccessCode.n803);
             const truncatedNumber = validNumber.substring(0, 5); // Just take first 5 digits
 
-            const result = validator.validate(truncatedNumber);
+            const result: MobileNumberValidationResult = validator.validate(truncatedNumber);
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.IncorrectNumberOfDigits);
         });
 
         test('should reject non-Nigerian number format', () => {
-            const result = validator.validate('12345678901');
+            const result: MobileNumberValidationResult = validator.validate('12345678901');
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.NotNigerianNumber);
         });
@@ -51,7 +53,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = NetworkAccessCode.n803;
             const invalidNumber = TestDataGenerator.generateInvalidLengthNumber(networkCode, false); // too short
 
-            const result = validator.validate(invalidNumber);
+            const result: MobileNumberValidationResult = validator.validate(invalidNumber);
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.IncorrectNumberOfDigits);
         });
@@ -60,7 +62,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const invalidNumber = TestDataGenerator.generateNonNumericNumber(networkCode);
 
-            const result = validator.validate(invalidNumber);
+            const result: MobileNumberValidationResult = validator.validate(invalidNumber);
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.ContainsNonNumericChars);
         });
@@ -69,7 +71,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const numberWithO = TestDataGenerator.generateNumberWithO(networkCode);
 
-            const result = validator.validate(numberWithO);
+            const result: MobileNumberValidationResult = validator.validate(numberWithO);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.networkCode).toBe(networkCode);
         });
@@ -77,7 +79,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should reject invalid network code', () => {
             const invalidNumber = TestDataGenerator.generateInvalidNetworkCodeNumber();
 
-            const result = validator.validate(invalidNumber);
+            const result: MobileNumberValidationResult = validator.validate(invalidNumber);
             expect(result.validationSucceeded).toBe(false);
             expect([MobileValidationStatus.NotNigerianNumber, MobileValidationStatus.IncorrectNetworkCode]).toContain(result.validationStatus);
         });
@@ -88,7 +90,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const localNumber = TestDataGenerator.generateValidNumber(networkCode);
 
-            const result = validator.validate(localNumber);
+            const result: MobileNumberValidationResult = validator.validate(localNumber);
             expect(result.validationSucceeded).toBe(true);
         });
 
@@ -96,7 +98,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const internationalNumber = TestDataGenerator.generateInternationalNumber(networkCode);
 
-            const result = validator.validate(internationalNumber);
+            const result: MobileNumberValidationResult = validator.validate(internationalNumber);
             expect(result.validationSucceeded).toBe(true);
         });
 
@@ -104,7 +106,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const internationalPlusNumber = TestDataGenerator.generateInternationalPlusNumber(networkCode);
 
-            const result = validator.validate(internationalPlusNumber);
+            const result: MobileNumberValidationResult = validator.validate(internationalPlusNumber);
             expect(result.validationSucceeded).toBe(true);
         });
 
@@ -112,7 +114,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const numberWithSpaces = TestDataGenerator.generateNumberWithSpaces(networkCode);
 
-            const result = validator.validate(numberWithSpaces);
+            const result: MobileNumberValidationResult = validator.validate(numberWithSpaces);
             expect(result.validationSucceeded).toBe(true);
         });
     });
@@ -121,7 +123,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify MTN number', () => {
             const mtnNumber = TestDataGenerator.generateValidNumberForTelco(Telco.MTN);
 
-            const result = validator.validate(mtnNumber);
+            const result: MobileNumberValidationResult = validator.validate(mtnNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.MTN);
         });
@@ -129,7 +131,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify Airtel number', () => {
             const airtelNumber = TestDataGenerator.generateValidNumberForTelco(Telco.Airtel);
 
-            const result = validator.validate(airtelNumber);
+            const result: MobileNumberValidationResult = validator.validate(airtelNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.Airtel);
         });
@@ -137,7 +139,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify Globacom number', () => {
             const gloNumber = TestDataGenerator.generateValidNumberForTelco(Telco.Globacom);
 
-            const result = validator.validate(gloNumber);
+            const result: MobileNumberValidationResult = validator.validate(gloNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.Globacom);
         });
@@ -145,7 +147,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify 9Mobile number', () => {
             const nineMobileNumber = TestDataGenerator.generateValidNumberForTelco(Telco.NineMobile);
 
-            const result = validator.validate(nineMobileNumber);
+            const result: MobileNumberValidationResult = validator.validate(nineMobileNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.NineMobile);
         });
@@ -156,7 +158,7 @@ describe('NigerianMobileNumberValidator', () => {
             // Using network code 709 which is withdrawn
             const withdrawnNumber = `0${NetworkAccessCode.n709}1234567`;
 
-            const result = validator.validate(withdrawnNumber);
+            const result: MobileNumberValidationResult = validator.validate(withdrawnNumber);
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.WithdrawnNetworkCode);
         });
@@ -165,7 +167,7 @@ describe('NigerianMobileNumberValidator', () => {
             // Using network code 700 which is shared VAS
             const sharedVasNumber = `0${NetworkAccessCode.n700}1234567`;
 
-            const result = validator.validate(sharedVasNumber);
+            const result: MobileNumberValidationResult = validator.validate(sharedVasNumber);
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.SharedVASNetworkCode);
         });
@@ -174,7 +176,7 @@ describe('NigerianMobileNumberValidator', () => {
             // Using network code 900 which is reserved
             const reservedNumber = `0${NetworkAccessCode.n900}1234567`;
 
-            const result = validator.validate(reservedNumber);
+            const result: MobileNumberValidationResult = validator.validate(reservedNumber);
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.ReservedNetworkCode);
         });
@@ -184,7 +186,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should recognize new network code 707 as MTN', () => {
             const mtnNumber = TestDataGenerator.generateValidNumber(NetworkAccessCode.n707);
 
-            const result = validator.validate(mtnNumber);
+            const result: MobileNumberValidationResult = validator.validate(mtnNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.MTN);
         });
@@ -192,7 +194,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should recognize new network code 914 as MTN', () => {
             const mtnNumber = TestDataGenerator.generateValidNumber(NetworkAccessCode.n914);
 
-            const result = validator.validate(mtnNumber);
+            const result: MobileNumberValidationResult = validator.validate(mtnNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.MTN);
         });
@@ -200,7 +202,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should recognize new network code 710 as Telewyz', () => {
             const telewyzNumber = TestDataGenerator.generateValidNumber(NetworkAccessCode.n710);
 
-            const result = validator.validate(telewyzNumber);
+            const result: MobileNumberValidationResult = validator.validate(telewyzNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.Telewyz);
         });
@@ -208,7 +210,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should recognize Globacom with 915 code', () => {
             const gloNumber = TestDataGenerator.generateValidNumber(NetworkAccessCode.n915);
 
-            const result = validator.validate(gloNumber);
+            const result: MobileNumberValidationResult = validator.validate(gloNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.Globacom);
         });
@@ -216,7 +218,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should recognize Mafab with 801 code', () => {
             const mafabNumber = TestDataGenerator.generateValidNumber(NetworkAccessCode.n801);
 
-            const result = validator.validate(mafabNumber);
+            const result: MobileNumberValidationResult = validator.validate(mafabNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.Mafab);
         });
@@ -226,7 +228,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify Smile number in 702 range', () => {
             const smileNumber = TestDataGenerator.generateValidNumberForTelco(Telco.Smile);
 
-            const result = validator.validate(smileNumber);
+            const result: MobileNumberValidationResult = validator.validate(smileNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.Smile);
         });
@@ -234,7 +236,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify Returned range in 702', () => {
             const returnedNumber = TestDataGenerator.generateReturned702Number();
 
-            const result = validator.validate(returnedNumber);
+            const result: MobileNumberValidationResult = validator.validate(returnedNumber);
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.ReturnedNetworkCode);
         });
@@ -242,7 +244,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify Interconnect Clearinghouse in 702 range', () => {
             const ichNumber = TestDataGenerator.generateValidNumberForTelco(Telco.InterconnectClearinghouse);
 
-            const result = validator.validate(ichNumber);
+            const result: MobileNumberValidationResult = validator.validate(ichNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.InterconnectClearinghouse);
         });
@@ -250,7 +252,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify Openskys in 702 range', () => {
             const openskysNumber = TestDataGenerator.generateValidNumberForTelco(Telco.Openskys);
 
-            const result = validator.validate(openskysNumber);
+            const result: MobileNumberValidationResult = validator.validate(openskysNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.Openskys);
         });
@@ -258,7 +260,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify withdrawn range in 702', () => {
             const withdrawnNumber = TestDataGenerator.generateWithdrawn702Number();
 
-            const result = validator.validate(withdrawnNumber);
+            const result: MobileNumberValidationResult = validator.validate(withdrawnNumber);
             expect(result.validationSucceeded).toBe(false);
             expect(result.validationStatus).toBe(MobileValidationStatus.WithdrawnNetworkCode);
         });
@@ -266,7 +268,7 @@ describe('NigerianMobileNumberValidator', () => {
         test('should identify Visafone in 702 range', () => {
             const visafoneNumber = TestDataGenerator.generateValidNumberForTelco(Telco.Visafone);
 
-            const result = validator.validate(visafoneNumber);
+            const result: MobileNumberValidationResult = validator.validate(visafoneNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.telco).toBe(Telco.Visafone);
         });
@@ -277,7 +279,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const localNumber = TestDataGenerator.generateValidNumber(networkCode);
 
-            const result = validator.validate(localNumber);
+            const result: MobileNumberValidationResult = validator.validate(localNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.networkCode).toBe(networkCode);
             expect(result.mobileNumber?.subscriberNumber.length).toBe(7);
@@ -290,7 +292,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const internationalNumber = TestDataGenerator.generateInternationalNumber(networkCode);
 
-            const result = validator.validate(internationalNumber);
+            const result: MobileNumberValidationResult = validator.validate(internationalNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.networkCode).toBe(networkCode);
             expect(result.mobileNumber?.subscriberNumber.length).toBe(7);
@@ -303,7 +305,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const internationalPlusNumber = TestDataGenerator.generateInternationalPlusNumber(networkCode);
 
-            const result = validator.validate(internationalPlusNumber);
+            const result: MobileNumberValidationResult = validator.validate(internationalPlusNumber);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.countryCode).toBe(234);
             expect(result.mobileNumber?.networkCode).toBe(networkCode);
@@ -316,7 +318,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const numberWithSpaces = TestDataGenerator.generateNumberWithSpaces(networkCode);
 
-            const result = validator.validate(numberWithSpaces);
+            const result: MobileNumberValidationResult = validator.validate(numberWithSpaces);
             expect(result.mobileNumber?.countryCode).toBe(234);
             expect(result.mobileNumber?.networkCode).toBe(networkCode);
             expect(result.mobileNumber?.subscriberNumber.length).toBe(7);
@@ -328,7 +330,7 @@ describe('NigerianMobileNumberValidator', () => {
             const networkCode = chance.pickone(TestDataGeneratorBase.allValidNetworkCodes);
             const numberWithO = TestDataGenerator.generateNumberWithO(networkCode);
 
-            const result = validator.validate(numberWithO);
+            const result: MobileNumberValidationResult = validator.validate(numberWithO);
             expect(result.validationSucceeded).toBe(true);
             expect(result.mobileNumber?.networkCode).toBe(networkCode);
             expect(result.mobileNumber?.subscriberNumber.length).toBe(7);
@@ -358,7 +360,7 @@ describe('NigerianMobileNumberValidator', () => {
             const testCases = TestDataGenerator.generatePropertyBasedTest('telco', 20);
 
             for (const testCase of testCases) {
-                const result = validator.validate(testCase.number);
+                const result: MobileNumberValidationResult = validator.validate(testCase.number);
 
                 if (testCase.expectedValid) {
                     expect(result.validationSucceeded).toBe(true);
@@ -374,4 +376,82 @@ describe('NigerianMobileNumberValidator', () => {
             }
         });
     });
+
+    describe('Rate limiting', () => {
+        test('should block validation when rate limit exceeded', () => {
+            const rateLimitedValidator = new NigerianMobileNumberValidator({
+                logger: getDefaultLogger(),
+                rateLimit: 1 // Very low limit for testing
+            });
+
+            // First call should work
+            const firstResult = rateLimitedValidator.validate('08031234567');
+            expect(firstResult.validationSucceeded).toBe(true);
+
+            // Second call should be blocked
+            const secondResult = rateLimitedValidator.validate('08031234568');
+            expect(secondResult.validationSucceeded).toBe(false);
+            expect(secondResult.validationStatus).toBe(MobileValidationStatus.RateLimitExceeded);
+
+            rateLimitedValidator.dispose();
+        });
+
+        test('should allow unlimited validations when rateLimit is 0', () => {
+            const unlimitedValidator = new NigerianMobileNumberValidator({
+                logger: getDefaultLogger(),
+                rateLimit: 0
+            });
+
+            // Multiple calls should all work
+            const results = [
+                unlimitedValidator.validate('08031234567'),
+                unlimitedValidator.validate('08031234568'),
+                unlimitedValidator.validate('08031234569')
+            ];
+
+            results.forEach(result => {
+                expect(result.validationSucceeded).toBe(true);
+            });
+
+            unlimitedValidator.dispose();
+        });
+    });
+
+    describe('Validation triggering logic', () => {
+        test('should detect forward typing direction', () => {
+            // Start with empty input
+            validator.validate('');
+
+            // Simulate typing forward
+            validator.validate('0');
+            validator.validate('08');
+            validator.validate('080');
+
+            expect(validator.usersTypingDirection).toBe(TypingDirection.Forward);
+        });
+
+        test('should detect backward typing direction', () => {
+            // Start with complete number
+            validator.validate('08031234567');
+
+            // Simulate deleting characters
+            validator.validate('0803123456');
+            validator.validate('080312345');
+            validator.validate('08031234');
+
+            expect(validator.usersTypingDirection).toBe(TypingDirection.Backward);
+
+        });
+
+        test('should trigger validation after previous error', () => {
+            // First enter invalid number
+            const invalidResult = validator.validate('12345678901');
+            expect(invalidResult.validationSucceeded).toBe(false);
+
+            // Now enter valid number
+            const validResult = validator.validate('08031234567');
+            expect(validResult.validationSucceeded).toBe(true);
+        });
+    });
+
 });

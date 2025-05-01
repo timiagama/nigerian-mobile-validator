@@ -3,7 +3,8 @@
 /**
  * An enum representing the direction in which the user is currently typing.
  */
-enum TypingDirection {
+export enum TypingDirection {
+    Unknown,
     Forward,
     Backward
 }

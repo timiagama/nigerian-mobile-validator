@@ -32,23 +32,28 @@ nigerian-mobile-validator/
 │   │   │   ├── test-data-generator-valid-numbers.ts
 │   │   │   └── test-data-generator.ts
 │   │   ├── batch-validator.test.ts
+│   │   ├── event-emitter.test.ts
 │   │   ├── index.test.ts
 │   │   ├── logger.test.ts
 │   │   ├── mobile-number-range.test.ts
+│   │   ├── mobile-number-validation-result.test.ts
 │   │   ├── mobile-numbering-plan.test.ts
 │   │   ├── mobile-validator-sanitization.test.ts
 │   │   ├── network-access-code-util.test.ts
 │   │   ├── nigerian-mobile-validator.test.ts
 │   │   ├── property-based-avanced.test.ts
 │   │   ├── property-based.test.ts
+│   │   ├── runtime-environment.test.ts
 │   │   ├── telco-number-allocation.test.ts
 │   │   ├── utils.test.ts
 │   │   └── validator-security.test.ts
 │   ├── events/                  # Event handling
 │   │   └── event-emitter.ts     # Custom event emitter for reactive validation
 │   ├── logging/                 # Logging infrastructure
+│   │   └── i-logger.ts          # Logger class interface
 │   │   └── logger.ts            # Logger with support for different backends
 │   ├── number-validation/       # Core validation logic
+│   │   ├── i-mobile-number.ts   # Mobile number class interface
 │   │   ├── mobile-number-validation-result.ts  # Validation result model
 │   │   ├── mobile-validation-status.ts         # Validation status codes
 │   │   ├── nigerian-mobile-number-validator.ts # Main validator class
@@ -64,7 +69,7 @@ nigerian-mobile-validator/
 │   │   └── validator-security.ts         # Input sanitization and security
 │   ├── utils/                   # Utility functions
 │   │   ├── general-utils.ts              # General utility functions
-│   │   └── is-browser.ts                 # Environment detection
+│   │   └── runtime-environment.ts        # Environment detection
 │   └── index.ts                 # Library entry point and exports
 ├── dist/                      # Built output (not in source control)
 │   ├── cjs/                   # CommonJS build
@@ -161,7 +166,7 @@ Handles input sanitization and security measures:
 Contains utility functions used across the library:
 
 - **general-utils.ts**: Common utility functions
-- **is-browser.ts**: Environment detection for SSR compatibility
+- **runtime-environment.ts**: Environment detection for SSR compatibility
 
 ## Security Infrastructure
 

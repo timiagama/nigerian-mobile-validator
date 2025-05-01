@@ -9,20 +9,11 @@ import { TelcoNumberAllocation } from '../numbering-plan/telco-number-allocation
 import { Telco } from '../numbering-plan/telco';
 import { ValidationTriggeringFlags } from './validation-triggering-flags';
 import { GeneralUtils } from '../utils/general-utils';
-import { ILogger, getDefaultLogger } from '../logging/logger';
-import { ValidatorSecurity } from '../security/validator-security';
-
-/**
- * Represents a Nigerian mobile phone number.
- */
-export interface IMobileNumber {
-    readonly msisdn: string;
-    readonly subscriberNumber: string;
-    readonly countryCode: number;
-    readonly networkCode: number;
-    readonly telco: string;
-    readonly localNumber: string;
-}
+import { getDefaultLogger } from '../logging/logger';
+import { IRollingWindowRateLimiter, ValidatorSecurity } from '../security/validator-security';
+import { IMobileNumber } from './i-mobile-number';
+import { ILogger } from '../logging/i-logger';
+import { TypingDirection } from './typing-direction';
 
 /**
  * Options for the Nigerian Mobile Number Validator
@@ -40,14 +31,6 @@ export interface ValidatorOptions {
 }
 
 /**
- * Enum representing the direction in which the user is currently typing.
- */
-enum TypingDirection {
-    Forward,
-    Backward
-}
-
-/**
  * This class validates Nigerian mobile numbers in strict compliance with the 
  * official Nigerian National Numbering Plan.
  * 
@@ -58,7 +41,9 @@ export class NigerianMobileNumberValidator {
     private readonly mobileNumberingPlan = new MobileNumberingPlan();
     private readonly validationTriggeringFlags = new ValidationTriggeringFlags();
     private readonly logger: ILogger;
-    private readonly rateLimiter?: ReturnType<typeof ValidatorSecurity.createRollingWindowRateLimiter>;
+    private readonly rateLimiter?: IRollingWindowRateLimiter;
+
+    private currentTypingDirection: TypingDirection;
 
 
     /**
@@ -81,6 +66,8 @@ export class NigerianMobileNumberValidator {
 
             this.logger.info(`Rate limiting enabled: ${options.rateLimit} validations per minute`);
         }
+
+        this.currentTypingDirection = TypingDirection.Unknown;
 
         this.logger.debug('NigerianMobileNumberValidator initialized');
     }
@@ -179,14 +166,21 @@ export class NigerianMobileNumberValidator {
     // eslint-disable-next-line sonarjs/cognitive-complexity
     private areThereEnoughDigitsToValidate(currentUserInput: string): boolean {
         // Determine the direction of typing (to handle edge cases)
-        const usersTypingDirection =
-            this.validationTriggeringFlags.previousUserInput.length <= currentUserInput.length
-                ? TypingDirection.Forward
-                : TypingDirection.Backward;
+        if (this.validationTriggeringFlags.previousUserInput.length == currentUserInput.length) {
+            this.usersTypingDirection = TypingDirection.Unknown;
+        }
+        else if (this.validationTriggeringFlags.previousUserInput.length <= currentUserInput.length) {
+            this.usersTypingDirection = TypingDirection.Forward;
+        }
+        else {
+            this.usersTypingDirection = TypingDirection.Backward;
+        }
+
 
         // Store current input as previous for next time
         this.validationTriggeringFlags.previousUserInput = currentUserInput;
         if (currentUserInput.length === 0) {
+            // unreachable code, ValidatorSecurity.fastReject stopped validation long ago
             this.validationTriggeringFlags.hasPreviouslyErrored = false;
             this.validationTriggeringFlags.validated = false;
             return false;
@@ -197,24 +191,24 @@ export class NigerianMobileNumberValidator {
 
             if (currentUserInput.startsWith('0')) {
 
-                if (usersTypingDirection === TypingDirection.Forward) {
+                if (this.usersTypingDirection === TypingDirection.Forward) {
                     if (currentUserInput.length >= 11) {
                         return true;
                     }
                 } else {
-                    // Moving backwards
+                    // Moving backwards or unknown
                     if (currentUserInput.length === 10 || currentUserInput.length === 11) {
                         return true;
                     }
                 }
             } else if (currentUserInput.startsWith('234')) {
 
-                if (usersTypingDirection === TypingDirection.Forward) {
+                if (this.usersTypingDirection === TypingDirection.Forward) {
                     if (currentUserInput.length >= 13) {
                         return true;
                     }
                 } else {
-                    // Moving backwards
+                    // Moving backwards or unknown
                     if (currentUserInput.length === 12 || currentUserInput.length === 13) {
                         return true;
                     }
@@ -237,6 +231,17 @@ export class NigerianMobileNumberValidator {
      */
     static sanitizeUserProvidedMobileNumber(userProvidedDigits: string): string {
         return ValidatorSecurity.stripUnsafeInputs(userProvidedDigits);
+    }
+
+    private set usersTypingDirection(typingDirection: TypingDirection) {
+        this.currentTypingDirection = typingDirection;
+    }
+
+    /**
+     * Gets an enum representing the direction in which the user is currently typing.
+     */
+    public get usersTypingDirection(): TypingDirection {
+        return this.currentTypingDirection;
     }
 
     /**
@@ -270,6 +275,7 @@ export class NigerianMobileNumberValidator {
             return !['7', '8', '9'].includes(fourthDigit);
         }
         else if (sanitizedUserInput.startsWith('+234')) {
+            // unreachable code, sanitizeUserProvidedMobileNumber() has already removed leading +
             // International format with plus: 5th digit must be 7, 8, or 9
             if (sanitizedUserInput.length < 5) return true;
             const fifthDigit = sanitizedUserInput.charAt(4);
@@ -310,6 +316,7 @@ export class NigerianMobileNumberValidator {
 
         // Handle empty input
         if (!userProvidedDigits || userProvidedDigits.length === 0) {
+            // unreachable code, ValidatorSecurity.fastReject() has already stopped validation
             this.logger.debug('Empty input provided');
             return this.publishValidationResult(
                 '',
@@ -325,6 +332,7 @@ export class NigerianMobileNumberValidator {
 
         // Check if the input is numeric
         if (!GeneralUtils.isNumeric(sanitizedUserInput)) {
+            // unreachable code, ValidatorSecurity.fastReject() has already stopped validation
             this.logger.warn(`Input contains non-numeric characters: ${sanitizedUserInput}`);
             return this.publishValidationResult(
                 userProvidedDigits,
@@ -366,6 +374,7 @@ export class NigerianMobileNumberValidator {
         } else if (sanitizedUserInput.startsWith('234')) {
             expectedCharLength = 13;
         } else if (sanitizedUserInput.startsWith('+234')) {
+            // unreachable code, sanitizeUserProvidedMobileNumber() removes leading +
             expectedCharLength = 14;
         } else {
             // Not a Nigerian number format
@@ -423,6 +432,8 @@ export class NigerianMobileNumberValidator {
 
         // Check the telco status
         if (telcoNumberAllocation.telco === Telco.Unassigned) {
+            // potentially unreachable, there are currently no ranges designated as unassigned
+            // but may be reachable in the future (NOTE: if so a test will need to be created)
             this.logger.warn(`Unassigned network code: ${mobileNumber.networkCode}`);
             return this.publishValidationResult(
                 userProvidedDigits,
@@ -514,6 +525,7 @@ export class NigerianMobileNumberValidator {
                 this._subscriberNumber = msisdn.substring(6);
             } else {
                 // Assume format with +: +234803xxxxxxx (but + should be stripped before)
+                // potentially unreachable code, since we only validate sanitized inputs
                 this._countryCode = parseInt(msisdn.substring(1, 4)); // +234
                 this._networkCode = parseInt(msisdn.substring(4, 7)); // e.g., 803
                 this._subscriberNumber = msisdn.substring(7);

@@ -96,6 +96,63 @@ describe('Logger', () => {
         test('should throw if invalid Winston logger provided', () => {
             expect(() => LoggerFactory.createLogger({ type: 'winston', instance: {} })).toThrow('Invalid Winston logger provided');
         });
+
+        test('should throw error when Winston logger is partially implemented', () => {
+            const incompleteWinstonLogger = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn()
+                // Missing error method
+            };
+            expect(() =>
+                LoggerFactory.createLogger({ type: 'winston', instance: incompleteWinstonLogger })
+            ).toThrow('Invalid Winston logger provided');
+        });
+
+        test('should pass multiple metadata parameters to debug method', () => {
+            const mockWinston = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+            const logger = LoggerFactory.createLogger({ type: 'winston', instance: mockWinston });
+            const meta1 = { userId: 456 };
+            const meta2 = { action: 'debugTest' };
+
+            logger.debug('Debug with meta', meta1, meta2);
+            expect(mockWinston.debug).toHaveBeenCalledWith('Debug with meta', meta1, meta2);
+        });
+
+        test('should pass warn messages with metadata to Winston logger', () => {
+            const mockWinston = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+            const logger = LoggerFactory.createLogger({ type: 'winston', instance: mockWinston });
+            const meta = { status: 'failed', code: 503 };
+
+            logger.warn('Service unavailable', meta);
+            expect(mockWinston.warn).toHaveBeenCalledWith('Service unavailable', meta);
+        });
+
+        test('should pass error messages with multiple metadata parameters to Winston logger', () => {
+            const mockWinston = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+            const logger = LoggerFactory.createLogger({ type: 'winston', instance: mockWinston });
+            const meta1 = { errorType: 'DB' };
+            const meta2 = { query: 'SELECT * FROM users' };
+
+            logger.error('Database connection failed', meta1, meta2);
+            expect(mockWinston.error).toHaveBeenCalledWith('Database connection failed', meta1, meta2);
+        });
+
     });
 
     describe('PinoAdapter', () => {
@@ -119,6 +176,64 @@ describe('Logger', () => {
         test('should throw if invalid Pino logger provided', () => {
             expect(() => LoggerFactory.createLogger({ type: 'pino', instance: {} })).toThrow('Invalid Pino logger provided');
         });
+
+        test('should throw error when Pino logger is partially implemented', () => {
+            const incompletePinoLogger = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                error: jest.fn()
+                // Missing warn method
+            };
+            expect(() =>
+                LoggerFactory.createLogger({ type: 'pino', instance: incompletePinoLogger })
+            ).toThrow('Invalid Pino logger provided');
+        });
+
+        test('should format metadata correctly in debug method', () => {
+            const mockPino = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+            const logger = LoggerFactory.createLogger({ type: 'pino', instance: mockPino });
+            const meta = { sessionId: 'abc123' };
+
+            logger.debug('Debug message', meta);
+            expect(mockPino.debug).toHaveBeenCalledWith({ meta: [meta] }, 'Debug message');
+        });
+
+        test('should format warn messages with metadata array for Pino logger', () => {
+            const mockPino = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+            const logger = LoggerFactory.createLogger({ type: 'pino', instance: mockPino });
+            const meta1 = { retryCount: 3 };
+            const meta2 = { endpoint: '/api' };
+
+            logger.warn('Request retries exhausted', meta1, meta2);
+            expect(mockPino.warn).toHaveBeenCalledWith(
+                { meta: [meta1, meta2] },
+                'Request retries exhausted'
+            );
+        });
+
+        test('should handle error messages without metadata for Pino logger', () => {
+            const mockPino = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+            const logger = LoggerFactory.createLogger({ type: 'pino', instance: mockPino });
+
+            logger.error('Critical system failure');
+            expect(mockPino.error).toHaveBeenCalledWith({}, 'Critical system failure');
+        });
+
     });
 
     describe('LoggerFactory', () => {
@@ -130,6 +245,44 @@ describe('Logger', () => {
 
             expect(console.info).toHaveBeenCalledWith('[CustomPrefix] INFO: Info message');
         });
+
+        test('should create ConsoleLogger with default prefix when no options are provided', () => {
+            // Properly spy on console methods
+            const consoleSpy = jest.spyOn(console, 'info').mockImplementation(() => { });
+
+            const logger = LoggerFactory.createLogger(); // No options provided
+            logger.info('Test message');
+
+            expect(consoleSpy).toHaveBeenCalledWith(
+                '[NigerianMobileValidator] INFO: Test message'
+            );
+
+            // Cleanup
+            consoleSpy.mockRestore();
+        });
+
+        test('should throw error when instance is provided with unsupported logger type', () => {
+            const invalidLoggerInstance = { debug: jest.fn(), info: jest.fn(), warn: jest.fn(), error: jest.fn() };
+            expect(() =>
+                LoggerFactory.createLogger({ type: 'unsupportedType' as any, instance: invalidLoggerInstance })
+            ).toThrow('Unsupported logger type: unsupportedType');
+        });
+
+        test('should default to ConsoleLogger when invalid type is specified without instance', () => {
+            // Create a proper spy with cleanup
+            const consoleSpy = jest.spyOn(console, 'info').mockImplementation(() => { });
+
+            const logger = LoggerFactory.createLogger({ type: 'invalidType' as any });
+            logger.info('Test message');
+
+            expect(consoleSpy).toHaveBeenCalledWith(
+                '[NigerianMobileValidator] INFO: Test message'
+            );
+
+            // Clean up the spy
+            consoleSpy.mockRestore();
+        });
+
     });
 
     describe('Default logger', () => {

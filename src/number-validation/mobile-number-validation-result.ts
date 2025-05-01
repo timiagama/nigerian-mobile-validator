@@ -1,8 +1,8 @@
 // src/number-validation/mobile-number-validation-result.ts
 
-import { IMobileNumber } from './nigerian-mobile-number-validator';
 import { MobileValidationStatus, ValidationStatusMessages } from './mobile-validation-status';
 import { TelcoNumberAllocation } from '../numbering-plan/telco-number-allocation';
+import { IMobileNumber } from './i-mobile-number';
 
 /**
  * An object representing the result of validating the mobile number provided by the user.
