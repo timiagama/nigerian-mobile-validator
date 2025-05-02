@@ -36,6 +36,9 @@ jobs:
 
       - name: Run full CI process (build, test, snyk, sonar)
         run: npm run ci
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL || 'https://sonarcloud.io' }}
 
   publish:
     needs: build
