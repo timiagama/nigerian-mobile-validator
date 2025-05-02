@@ -1,6 +1,6 @@
 // src/__tests__/validator-security.test.ts
 
-import { ValidatorSecurity } from '../security/validator-security';
+import { IRollingWindowRateLimiter, ValidatorSecurity } from '../security/validator-security';
 
 describe('ValidatorSecurity', () => {
     describe('stripUnsafeInputs', () => {
@@ -26,7 +26,7 @@ describe('ValidatorSecurity', () => {
 
     describe('createRollingWindowRateLimiter', () => {
         test('should allow requests within the rate limit', () => {
-            const rateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(3, 1000);
+            const rateLimiter: IRollingWindowRateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(3, 1000);
 
             expect(rateLimiter.hasExceededLimit()).toBe(true); // 1st request
             expect(rateLimiter.hasExceededLimit()).toBe(true); // 2nd request
@@ -36,7 +36,7 @@ describe('ValidatorSecurity', () => {
 
         test('should respect the rolling window', async () => {
             // Create a rate limiter with 2 requests per second
-            const rateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(2, 1000);
+            const rateLimiter: IRollingWindowRateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(2, 1000);
 
             expect(rateLimiter.hasExceededLimit()).toBe(true); // 1st request
             expect(rateLimiter.hasExceededLimit()).toBe(true); // 2nd request
@@ -50,7 +50,7 @@ describe('ValidatorSecurity', () => {
         });
 
         test('should track current request count', () => {
-            const rateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(5);
+            const rateLimiter: IRollingWindowRateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(5);
 
             expect(rateLimiter.currentCount).toBe(0);
 
@@ -61,7 +61,7 @@ describe('ValidatorSecurity', () => {
         });
 
         test('should provide time until next allowed request', () => {
-            const rateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(1, 1000);
+            const rateLimiter: IRollingWindowRateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(1, 1000);
 
             expect(rateLimiter.timeUntilNextAllowed).toBe(0); // No requests yet
 
@@ -166,4 +166,142 @@ describe('ValidatorSecurity', () => {
             expect(ValidatorSecurity.fastReject('(o8O3) 123-4567')).toBe(false);
         });
     });
+});
+
+// Additional coverage required to pass Sonar quality gate v0.1.2
+
+describe('ValidatorSecurity additional coverage', () => {
+    describe('createRollingWindowRateLimiter', () => {
+        test('currentCount should accurately reflect requests in window', async () => {
+            const rateLimiter: IRollingWindowRateLimiter = ValidatorSecurity.createRollingWindowRateLimiter(5, 1000);
+
+            // Initial count should be 0
+            expect(rateLimiter.currentCount).toBe(0);
+
+            // Make 2 requests
+            rateLimiter.hasExceededLimit();
+            rateLimiter.hasExceededLimit();
+
+            // Should now show 2 requests
+            expect(rateLimiter.currentCount).toBe(2);
+
+            // Wait for window to expire
+            await new Promise(resolve => setTimeout(resolve, 1100));
+
+            // Count should reset to 0
+            expect(rateLimiter.currentCount).toBe(0);
+        });
+    });
+
+    describe('createSecureLogger', () => {
+        test('should handle non-string, non-object meta items', () => {
+            const mockLogger = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+
+            const secureLogger = ValidatorSecurity.createSecureLogger(mockLogger);
+            secureLogger.info('Test message', 123, true, null);
+
+            expect(mockLogger.info).toHaveBeenCalledWith(
+                'Test message',
+                123,
+                true,
+                null
+            );
+        });
+
+        test('should handle empty meta array', () => {
+            const mockLogger = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+
+            const secureLogger = ValidatorSecurity.createSecureLogger(mockLogger);
+            secureLogger.info('Test message');
+
+            expect(mockLogger.info).toHaveBeenCalledWith('Test message');
+        });
+
+        test('should handle arrays with nested objects', () => {
+            const mockLogger = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+
+            const secureLogger = ValidatorSecurity.createSecureLogger(mockLogger);
+            secureLogger.info('Test message', [
+                '08031234567',
+                { phone: '07031234567', data: 'test' },
+                123
+            ]);
+
+            expect(mockLogger.info).toHaveBeenCalledWith(
+                'Test message',
+                [
+                    '080******67',
+                    { phone: '070******67', data: 'test' },
+                    123
+                ]
+            );
+        });
+
+        test('should handle objects with non-sensitive fields', () => {
+            const mockLogger = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+
+            const secureLogger = ValidatorSecurity.createSecureLogger(mockLogger);
+            secureLogger.info('Test message', {
+                name: 'John Doe',
+                email: 'john@example.com',
+                age: 30
+            });
+
+            expect(mockLogger.info).toHaveBeenCalledWith(
+                'Test message',
+                {
+                    name: 'John Doe',
+                    email: 'john@example.com',
+                    age: 30
+                }
+            );
+        });
+
+        test('should handle objects with sensitive field names in different cases', () => {
+            const mockLogger = {
+                debug: jest.fn(),
+                info: jest.fn(),
+                warn: jest.fn(),
+                error: jest.fn()
+            };
+
+            const secureLogger = ValidatorSecurity.createSecureLogger(mockLogger);
+            secureLogger.info('Test message', {
+                PHONENUMBER: '08031234567',
+                Mobile: '07031234567',
+                contactNumber: '09031234567'
+            });
+
+            expect(mockLogger.info).toHaveBeenCalledWith(
+                'Test message',
+                {
+                    PHONENUMBER: '080******67',
+                    Mobile: '070******67',
+                    contactNumber: '090******67'
+                }
+            );
+        });
+
+    });
+
 });

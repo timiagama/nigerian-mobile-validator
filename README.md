@@ -1,6 +1,4 @@
-# Nigerian Mobile Number Validator
-
-The most rigorous library for validating Nigerian mobile numbers with strict compliance to the official Nigerian Communications Commission (NCC) numbering plan. Built in TypeScript with advanced, enterprise-grade features yet simple enough for general use. This library combines strict NCC numbering plan compliance with robust security features for deployment in critical production environments.
+## Nigerian Mobile Number Validator
 
 ![npm version](https://img.shields.io/npm/v/nigerian-mobile-validator.svg)
 ![license](https://img.shields.io/npm/l/nigerian-mobile-validator.svg)
@@ -9,6 +7,39 @@ The most rigorous library for validating Nigerian mobile numbers with strict com
 ![CodeQL Analysis](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/codeql-analysis.yml?label=CodeQL)
 ![Dependabot](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=dependabot)
 ![build status](https://img.shields.io/github/actions/workflow/status/timiagama/nigerian-mobile-validator/npm-publish.yml)
+
+**Don't let "trivial" mobile validation damage your business.**
+
+The most rigorous and up-to-date library for validating Nigerian mobile numbers, built in TypeScript with full compliance to the official Nigerian Communications Commission (NCC) numbering plan.
+
+Packed with enterprise-grade features (yet simple enough for general use). Ideal for fintechs, telcos, banks, and other regulated industries where validation errors can cause real business damage.
+
+**Why it matters:**
+
+Invalid mobile number validation isn't just a technical inconvenience—it's a business risk surface with potential consequences:
+
+1. **Revenue Loss:** Incorrectly rejecting valid numbers can block 2-3% of customer acquisitions (up to 10-15% in small-telco regions)
+
+2. **Regulatory Risk:** Non-compliance with NDPC data accuracy mandates exposes you to enforcement action
+
+3. **Reputational Risk:** If a single rejection goes viral it can spark PR fallout and damage your brand
+
+This library is designed for production environments where **accuracy and compliance** are non-negotiable.
+
+- Accurate validation across all Nigerian carriers
+
+- Up-to-date with NCC numbering plan changes
+
+- Helps meet NDPC data processing obligations
+
+- Reduces customer support burden from validation issues
+
+> “The cost of mobile validation failures isn't just lost users — it's operational overhead, regulatory exposure, and brand damage.”
+
+## Learn More
+
+Curious why a seemingly minor technical detail could trigger serious business impact? Read our article:
+[Nigeria's Overlooked Compliance Risk: Mobile Number Validation and the Unpredictable Cost of Failure](https://timi.agama.com.ng/case-studies/nigerias-overlooked-compliance-risk-mobile-number-validation-unpredictable-cost-of-failure)
 
 ## Enterprise Features
 

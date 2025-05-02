@@ -28,9 +28,8 @@ describe('Index exports', () => {
     });
 
     test('should export environment detection APIs', () => {
-        expect(NigerianMobileValidator.isBrowser).toBeDefined();
-        expect(NigerianMobileValidator.isNode).toBeDefined();
-        expect(NigerianMobileValidator.isWebWorker).toBeDefined();
+        expect(NigerianMobileValidator.CurrentEnvironment).toBeDefined();
+        expect(NigerianMobileValidator.RuntimeEnvironment).toBeDefined();
         expect(NigerianMobileValidator.createEventEmitter).toBeDefined();
     });
 

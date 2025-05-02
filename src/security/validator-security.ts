@@ -1,6 +1,35 @@
 // src/security/validator-security.ts
 
-import { ILogger } from '../logging/logger';
+import { ILogger } from '../logging/i-logger';
+
+/**
+ * Interface for a rolling window rate limiter.
+ * 
+ * Concrete objects should provide a sophisticated rate limiting approach that:
+ * 1. Uses a rolling time window instead of fixed windows
+ * 2. Only tracks timestamps of recent requests to minimize memory usage
+ * 3. Provides better protection against burst traffic
+ */
+export interface IRollingWindowRateLimiter {
+
+    /**
+     * Check if a new request should be allowed under the rate limit
+     * @returns True if the request is allowed, false if it exceeds the rate limit
+     */
+    hasExceededLimit(): boolean;
+
+    /**
+     * Gets the number of requests in the current window
+     */
+    get currentCount(): number;
+
+    /**
+     * Gets the time in ms until the next request would be allowed
+     * Returns 0 if requests are currently allowed
+     */
+    get timeUntilNextAllowed(): number;
+
+}
 
 /**
  * Security utilities for the Nigerian Mobile Number Validator
@@ -69,7 +98,7 @@ export class ValidatorSecurity {
      * @param windowSizeMs Size of the rolling window in milliseconds (default: 60000ms = 1 minute)
      * @returns A rate limiter object with check() method to verify if a new request is allowed
      */
-    static createRollingWindowRateLimiter(maxRequests: number, windowSizeMs = 60000) {
+    static createRollingWindowRateLimiter(maxRequests: number, windowSizeMs = 60000): IRollingWindowRateLimiter {
         const requestTimestamps: number[] = [];
 
         return {
@@ -246,7 +275,7 @@ export class ValidatorSecurity {
      */
     private static sanitizeObjectProperties(obj: any): any {
         const result: any = {};
-      
+
         for (const [key, value] of Object.entries(obj)) {
             // Check for sensitive field names
             const isSensitiveField = /phone|mobile|number|msisdn|subscriber/i.test(key);

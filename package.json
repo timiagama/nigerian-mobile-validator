@@ -1,7 +1,7 @@
 {
     "name": "nigerian-mobile-validator",
-    "version": "0.1.1",
-    "description": "The most rigorous library for validating Nigerian mobile numbers with strict compliance to NCC standards. Built in TypeScript with enterprise-grade features, yet simple enough for general use.",
+    "version": "0.1.2",
+    "description": "The most rigorous, up-to-date library for validating Nigerian mobile numbers. Fully NCC-compliant, and security-focused, with enterprise-grade features to prevent the business risks of validation failures in regulated industries.",
     "type": "module",
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
@@ -84,6 +84,8 @@
         "lint-staged": "^15.5.0",
         "prettier": "^3.5.2",
         "rimraf": "^5.0.10",
+        "snyk": "^1.1296.2",
+        "sonar-scanner": "^3.1.0",
         "ts-jest": "^29.2.6",
         "ts-node": "^10.9.2",
         "tsx": "^4.19.3",

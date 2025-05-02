@@ -1,7 +1,7 @@
 // src/events/event-emitter.ts
 
 import { EventEmitter } from 'events';
-import { isBrowser, isNode } from '../utils/is-browser';
+import { CurrentEnvironment, RuntimeEnvironment } from '../utils/runtime-environment';
 
 /**
  * Create an environment-agnostic event emitter
@@ -9,7 +9,7 @@ import { isBrowser, isNode } from '../utils/is-browser';
  */
 export function createEventEmitter(): EventEmitter {
     // In browsers or Node.js, use the EventEmitter from the 'events' package
-    if (isBrowser || isNode) {
+    if (RuntimeEnvironment.currentEnvironment == CurrentEnvironment.Browser || RuntimeEnvironment.currentEnvironment == CurrentEnvironment.Node) {
         return new EventEmitter();
     }
 

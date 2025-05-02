@@ -26,7 +26,7 @@ export {
 } from './logging/logger';
 
 // SSR compatibility
-export { isBrowser, isNode, isWebWorker } from './utils/is-browser';
+export { CurrentEnvironment, RuntimeEnvironment } from './utils/runtime-environment';
 export { createEventEmitter } from './events/event-emitter';
 
 // Utilities
